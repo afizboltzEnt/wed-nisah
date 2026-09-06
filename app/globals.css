@@ -1,0 +1,105 @@
+@import "tailwindcss";
+
+@theme {
+  --color-cream: #fbf6ec;
+  --color-paper: #f5eee0;
+  --color-burgundy: #8b2635;
+  --color-burgundy-deep: #6f1d2a;
+  --color-rose: #d9737e;
+  --color-dusty: #c97b82;
+  --color-sage: #4a5d4e;
+  --color-sage-light: #7d9077;
+  --color-gold: #c9a227;
+  --color-gold-deep: #a8811f;
+  --color-gold-soft: #e6c978;
+
+  --font-serif: var(--font-playfair);
+  --font-display: var(--font-cormorant);
+
+  --animate-float: float 6s ease-in-out infinite;
+  --animate-flutter: flutter 4s ease-in-out infinite;
+  --animate-glow: glow 3s ease-in-out infinite;
+
+  --shadow-card: 0 20px 60px -20px rgba(111, 29, 42, 0.25);
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-12px);
+  }
+}
+
+@keyframes flutter {
+  0%,
+  100% {
+    transform: translateY(0) rotate(-2deg);
+  }
+  50% {
+    transform: translateY(-8px) rotate(3deg);
+  }
+}
+
+@keyframes glow {
+  0%,
+  100% {
+    opacity: 0.7;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--color-cream);
+  color: var(--color-burgundy-deep);
+  font-family: var(--font-cormorant);
+  -webkit-tap-highlight-color: transparent;
+  overflow-x: hidden;
+}
+
+::selection {
+  background-color: var(--color-gold);
+  color: var(--color-cream);
+}
+
+/* Paper texture via subtle SVG noise on the body background */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.035;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+.text-gold-foil {
+  background: linear-gradient(
+    100deg,
+    #8b6c1f 0%,
+    #c9a227 25%,
+    #f0d878 45%,
+    #c9a227 60%,
+    #8b6c1f 100%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  animation: shimmer 5s linear infinite;
+}
+
+@keyframes shimmer {
+  to {
+    background-position: -200% center;
+  }
+}
