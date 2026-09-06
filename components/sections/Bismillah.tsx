@@ -11,17 +11,17 @@ export default function Bismillah() {
         </div>
       </Reveal>
       <Reveal delay={0.1}>
-        <p className="mt-6 font-serif text-2xl text-burgundy">
+        <p className="mt-6 font-serif text-[1.7rem] text-burgundy-deep">
           بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ
         </p>
       </Reveal>
       <Reveal delay={0.2}>
-        <p className="mt-3 font-display text-lg italic text-sage-light">
+        <p className="mt-3 font-cormorant text-lg italic text-sage-light">
           &ldquo;Bismillahirrahmanirrahim&rdquo;
         </p>
       </Reveal>
       <Reveal delay={0.3}>
-        <p className="mx-auto mt-4 max-w-xs font-display text-base leading-relaxed text-sage">
+        <p className="mx-auto mt-4 max-w-xs font-display text-sm font-light leading-relaxed tracking-[0.06em] text-sage">
           Ya Tuhan, dengan rahmat dan kasih sayang-Mu, sempurnakanlah
           majlis ini dengan keberkatan yang tidak berkesudahan.
         </p>

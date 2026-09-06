@@ -36,7 +36,7 @@ export default function EnvelopeOpener({ onOpen }: Props) {
         initial={{ opacity: 0, y: -12 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.2, duration: 0.8 }}
-        className="font-display text-sm uppercase tracking-[0.35em] text-burgundy/80"
+        className="font-display text-[0.7rem] font-light uppercase tracking-[0.4em] text-burgundy/80"
       >
         Jemputan Perkahwinan
       </motion.p>
@@ -45,7 +45,7 @@ export default function EnvelopeOpener({ onOpen }: Props) {
         initial={{ opacity: 0, y: 8 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.35, duration: 0.8 }}
-        className="mt-2 font-serif text-3xl text-burgundy"
+        className="mt-2 font-serif text-3xl text-burgundy-deep"
       >
         Dani <span className="text-gold">&amp;</span> Anisah
       </motion.h1>
@@ -102,13 +102,15 @@ export default function EnvelopeOpener({ onOpen }: Props) {
               className="absolute top-0 left-0 h-1/2 w-full"
               style={{
                 background:
-                  "linear-gradient(to bottom right, rgba(201,162,39,0.06) 0%, transparent 50%)",
+                  "linear-gradient(to bottom right, rgba(212,175,55,0.06) 0%, transparent 50%)",
               }}
             />
           </div>
-          <p className="absolute inset-0 flex items-center justify-center font-display text-lg tracking-[0.15em] text-sage/70">
+          <p className="absolute inset-0 flex items-center justify-center gap-1 font-display text-sm font-light tracking-[0.15em] text-sage/70">
             Diajukan kepada&nbsp;
-            <span className="italic">Yang Dikasihi</span>
+            <span className="font-cormorant text-base italic text-burgundy">
+              Yang Dikasihi
+            </span>
           </p>
         </motion.div>
 
@@ -120,8 +122,8 @@ export default function EnvelopeOpener({ onOpen }: Props) {
           className="absolute left-1/2 top-1/2 z-20 -ml-[42px] -mt-[42px] flex h-[84px] w-[84px] items-center justify-center rounded-full shadow-xl"
           style={{
             background:
-              "radial-gradient(circle at 35% 30%, #8b2635 0%, #6f1d2a 55%, #4a1020 100%)",
-            boxShadow: "0 8px 24px rgba(111,29,42,0.45), inset 0 2px 6px rgba(255,240,241,0.25)",
+              "radial-gradient(circle at 35% 30%, #8b2a3a 0%, #6b1d2f 55%, #4a1020 100%)",
+            boxShadow: "0 8px 24px rgba(107,29,47,0.45), inset 0 2px 6px rgba(255,240,241,0.25)",
           }}
           initial={false}
           animate={
@@ -145,7 +147,7 @@ export default function EnvelopeOpener({ onOpen }: Props) {
               animate={{ scale: 4, opacity: 0 }}
               transition={{ duration: 0.9, ease: "easeOut" }}
             >
-              <svg width="64" height="64" viewBox="0 0 24 24" fill="#c9a227">
+              <svg width="64" height="64" viewBox="0 0 24 24" fill="#d4af37">
                 <path d="M12 21s-6.7-4.35-9.33-8.11C.55 10.05 1.62 6.5 4.5 6.5c1.8 0 3.42 1.1 4.1 2.4l1.4-2.4C10.2 4.4 10.6 4 12 4c1.4 0 1.8.4 2 .5" />
               </svg>
             </motion.div>
@@ -159,7 +161,7 @@ export default function EnvelopeOpener({ onOpen }: Props) {
         initial={{ opacity: 0 }}
         animate={{ opacity: stage === "idle" ? 1 : 0 }}
         transition={{ delay: 0.9, duration: 0.6 }}
-        className="mt-10 rounded-full border border-gold px-6 py-2.5 font-display text-sm tracking-[0.2em] text-gold-deep shadow-sm transition hover:bg-gold hover:text-cream"
+        className="mt-10 rounded-full border border-gold px-6 py-2.5 font-display text-xs font-medium uppercase tracking-[0.25em] text-gold-deep shadow-sm transition hover:bg-gold hover:text-cream"
       >
         Tekan Setem Untuk Membuka
       </motion.button>

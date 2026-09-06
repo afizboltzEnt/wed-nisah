@@ -14,35 +14,47 @@ export function Monogram({
     >
       <defs>
         <linearGradient id="goldfoil" x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0%" stopColor="#8b6c1f" />
-          <stop offset="30%" stopColor="#c9a227" />
-          <stop offset="50%" stopColor="#f0d878" />
-          <stop offset="72%" stopColor="#c9a227" />
-          <stop offset="100%" stopColor="#8b6c1f" />
+          <stop offset="0%" stopColor="#9c7a1f" />
+          <stop offset="30%" stopColor="#d4af37" />
+          <stop offset="50%" stopColor="#f6e27a" />
+          <stop offset="72%" stopColor="#d4af37" />
+          <stop offset="100%" stopColor="#9c7a1f" />
         </linearGradient>
       </defs>
       <ellipse
         cx="60"
         cy="60"
-        rx="46"
-        ry="46"
+        rx="47"
+        ry="47"
         fill="none"
         stroke="url(#goldfoil)"
-        strokeWidth="1.6"
-        strokeDasharray="0.5 7"
+        strokeWidth="1.7"
+        strokeDasharray="0.5 6.5"
         strokeLinecap="round"
-        opacity="0.9"
+        opacity="0.95"
       />
       <ellipse
         cx="60"
         cy="60"
-        rx="38"
-        ry="38"
-        fill="#8b2635"
-        opacity="0.08"
+        rx="40"
+        ry="40"
+        fill="#8b2a3a"
+        opacity="0.07"
         stroke="url(#goldfoil)"
-        strokeWidth="0.8"
+        strokeWidth="0.9"
         strokeLinecap="round"
+      />
+      <ellipse
+        cx="60"
+        cy="60"
+        rx="33"
+        ry="33"
+        fill="none"
+        stroke="url(#goldfoil)"
+        strokeWidth="0.6"
+        strokeDasharray="1 4"
+        strokeLinecap="round"
+        opacity="0.8"
       />
       <text
         x="60"

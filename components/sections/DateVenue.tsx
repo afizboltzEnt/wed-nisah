@@ -15,7 +15,7 @@ function MapLink({
       href={href}
       target="_blank"
       rel="noopener noreferrer"
-      className="flex flex-1 items-center justify-center gap-2 rounded-full border border-gold bg-cream/80 px-5 py-3 font-display text-sm tracking-wide text-gold-deep shadow-sm transition hover:bg-gold hover:text-cream active:scale-95"
+      className="flex flex-1 items-center justify-center gap-2 rounded-full border border-gold bg-cream/80 px-5 py-3 font-display text-xs font-medium uppercase tracking-[0.12em] text-gold-deep shadow-sm transition hover:bg-gold hover:text-cream active:scale-95"
     >
       {icon}
       {label}
@@ -27,33 +27,33 @@ export default function DateVenue() {
   return (
     <section className="flex flex-col items-center py-10 text-center">
       <Reveal>
-        <p className="font-serif text-2xl text-burgundy">Tarikh &amp; Masa</p>
+        <p className="font-serif text-2xl text-burgundy-deep">Tarikh &amp; Masa</p>
       </Reveal>
 
       <Reveal delay={0.1} className="mt-6 w-full rounded-lg border border-gold/50 bg-cream/70 px-6 py-6 shadow-sm">
         <p className="font-serif text-[2.2rem] leading-none text-gold-foil">
           {WEDDING.dateNum}
         </p>
-        <p className="mt-2 font-serif text-xl text-burgundy">
+        <p className="mt-2 font-serif text-xl text-burgundy-deep">
           {WEDDING.dateLong}
         </p>
-        <p className="mt-1 font-display text-base text-sage-light">
-          {WEDDING.timeStart}
+        <p className="mt-1 font-display text-[0.7rem] font-light uppercase tracking-[0.3em] text-sage-light">
+          {WEDDING.timeStart} — {WEDDING.time}
         </p>
       </Reveal>
 
       <Reveal delay={0.2} className="mt-8">
-        <p className="font-serif text-xl text-burgundy">Majlis</p>
-        <p className="mt-2 font-display text-lg text-sage">
+        <p className="font-serif text-xl text-burgundy-deep">Majlis</p>
+        <p className="mt-2 font-display text-sm font-light uppercase tracking-[0.2em] text-sage">
           Walimatul Urus &amp; Persandingan
         </p>
       </Reveal>
 
       <Reveal delay={0.3} className="mt-4 w-full rounded-lg border border-gold/50 bg-cream/70 px-6 py-6 shadow-sm">
-        <p className="font-serif text-xl text-burgundy">
+        <p className="font-serif text-xl text-burgundy-deep">
           {WEDDING.venue}
         </p>
-        <p className="mx-auto mt-2 max-w-xs font-display text-base leading-relaxed text-sage">
+        <p className="mx-auto mt-2 max-w-xs font-display text-xs font-light leading-relaxed tracking-[0.1em] text-sage">
           {WEDDING.address}
         </p>
       </Reveal>

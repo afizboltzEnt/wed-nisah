@@ -1,5 +1,9 @@
 import type { Metadata } from "next";
-import { Playfair_Display, Cormorant_Garamond } from "next/font/google";
+import {
+  Playfair_Display,
+  Cormorant_Garamond,
+  Montserrat,
+} from "next/font/google";
 import "./globals.css";
 
 const playfair = Playfair_Display({
@@ -13,6 +17,13 @@ const cormorant = Cormorant_Garamond({
   variable: "--font-cormorant",
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
+  display: "swap",
+});
+
+const montserrat = Montserrat({
+  variable: "--font-montserrat",
+  subsets: ["latin"],
+  weight: ["300", "400", "500"],
   display: "swap",
 });
 
@@ -34,7 +45,7 @@ export default function RootLayout({
   return (
     <html
       lang="ms"
-      className={`${playfair.variable} ${cormorant.variable}`}
+      className={`${playfair.variable} ${cormorant.variable} ${montserrat.variable}`}
     >
       <body>{children}</body>
     </html>

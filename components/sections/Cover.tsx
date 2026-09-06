@@ -18,19 +18,19 @@ export default function Cover() {
       </motion.div>
 
       <Reveal delay={0.1}>
-        <p className="mt-4 font-display text-sm uppercase tracking-[0.4em] text-sage">
+        <p className="mt-4 font-display text-[0.7rem] font-light uppercase tracking-[0.4em] text-sage">
           Walimatul Urus
         </p>
       </Reveal>
 
       <Reveal delay={0.2}>
-        <h1 className="mt-4 font-serif text-4xl leading-tight text-burgundy sm:text-[2.6rem]">
+        <h1 className="mt-4 font-serif text-4xl leading-tight text-burgundy-deep sm:text-[2.6rem]">
           Dani <span className="italic text-rose">&amp;</span> Anisah
         </h1>
       </Reveal>
 
       <Reveal delay={0.3}>
-        <p className="mt-3 font-display text-base italic text-sage-light">
+        <p className="mt-4 font-display text-xs font-light uppercase leading-relaxed tracking-[0.18em] text-sage-light">
           Dengan penuh kesyukuran, kami menjemput
           <br />
           Tuan/Puan, Encik/Cik &amp; ahli keluarga
@@ -39,9 +39,9 @@ export default function Cover() {
 
       <Reveal delay={0.4}>
         <div className="mt-6 flex items-center gap-3">
-          <span className="h-px w-14 bg-gradient-to-r from-transparent to-gold/70" />
+          <span className="h-px w-14 bg-gradient-to-r from-transparent to-gold/80" />
           <span className="text-gold">✦</span>
-          <span className="h-px w-14 bg-gradient-to-l from-transparent to-gold/70" />
+          <span className="h-px w-14 bg-gradient-to-l from-transparent to-gold/80" />
         </div>
       </Reveal>
 
@@ -52,13 +52,13 @@ export default function Cover() {
       </Reveal>
 
       <Reveal delay={0.6}>
-        <p className="mt-1 font-display text-sm uppercase tracking-[0.25em] text-burgundy/70">
+        <p className="mt-2 font-display text-[0.65rem] font-light uppercase tracking-[0.3em] text-burgundy/70">
           {WEDDING.time}
         </p>
       </Reveal>
 
       <Reveal delay={0.7}>
-        <p className="mt-6 font-display text-base leading-relaxed text-sage">
+        <p className="mt-6 font-display text-xs font-light uppercase leading-loose tracking-[0.2em] text-sage">
           Sireh Junjung Banquet Hall
           <br />
           Encorp Strand Mall, Kota Damansara

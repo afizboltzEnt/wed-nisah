@@ -11,22 +11,23 @@ export default function PageFrame({ children }: Props) {
   return (
     <main className="relative z-10 flex min-h-screen flex-col items-center px-4 pb-16 pt-10 sm:px-6">
       <div className="relative w-full max-w-[480px]">
-        {/* decorative double frame */}
-        <div className="pointer-events-none absolute inset-1 rounded-[26px] border border-gold/40" />
-        <div className="pointer-events-none absolute inset-3 rounded-[20px] border border-gold/25" />
+        {/* decorative double frame — outer pinstripe (recessed corners) */}
+        <div
+          className="pointer-events-none absolute inset-0 rounded-[26px] border border-gold/70"
+          style={{
+            clipPath:
+              "polygon(14px 0, calc(100% - 14px) 0, 100% 14px, 100% calc(100% - 14px), calc(100% - 14px) 100%, 14px 100%, 0 calc(100% - 14px), 0 14px)",
+          }}
+        />
+        {/* inner gold line ~20px inset (mockup framing) */}
+        <div className="pointer-events-none absolute inset-[20px] rounded-[14px] border border-gold/40" />
 
-        {/* corner florals */}
-        <div className="pointer-events-none absolute -left-6 -top-8 z-0">
-          <CornerFloral size={150} />
+        {/* lush corner florals — top-left + bottom-right symmetric cascade */}
+        <div className="pointer-events-none absolute -left-10 -top-14 z-0">
+          <CornerFloral size={235} />
         </div>
-        <div className="pointer-events-none absolute -right-6 -top-8 z-0">
-          <CornerFloral size={150} flip />
-        </div>
-        <div className="pointer-events-none absolute -bottom-10 -left-6 z-0">
-          <CornerFloral size={150} />
-        </div>
-        <div className="pointer-events-none absolute -bottom-10 -right-6 z-0">
-          <CornerFloral size={150} flip />
+        <div className="pointer-events-none absolute -bottom-16 -right-10 z-0">
+          <CornerFloral size={235} flip />
         </div>
 
         <Reveal y={20}>

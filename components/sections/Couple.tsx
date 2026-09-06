@@ -17,10 +17,10 @@ function Person({
         <div className="absolute inset-2 rounded-full border border-gold/40" />
         <span className="font-serif text-3xl text-gold-foil">{initials}</span>
       </div>
-      <h3 className="mt-4 font-serif text-xl leading-snug text-burgundy">
+      <h3 className="mt-4 font-serif text-xl leading-snug text-burgundy-deep">
         {name}
       </h3>
-      <p className="mt-0.5 font-display text-base italic text-sage">{short}</p>
+      <p className="mt-1 font-cormorant text-base italic text-sage">{short}</p>
     </div>
   );
 }
@@ -29,12 +29,12 @@ export default function Couple() {
   return (
     <section className="flex flex-col items-center py-10">
       <Reveal>
-        <p className="font-serif text-2xl text-burgundy">
+        <p className="font-serif text-2xl text-burgundy-deep">
           Pasangan Yang Bakal Dinikahkan
         </p>
       </Reveal>
       <Reveal delay={0.1}>
-        <p className="mt-2 font-display text-base italic text-sage-light">
+        <p className="mt-2 font-cormorant text-lg italic text-sage-light">
           &ldquo;The Wedding of&rdquo;
         </p>
       </Reveal>
@@ -62,7 +62,7 @@ export default function Couple() {
       </Reveal>
 
       <Reveal delay={0.4} className="mt-8 text-center">
-        <p className="font-display text-base leading-relaxed text-sage">
+        <p className="font-display text-sm font-light uppercase leading-relaxed tracking-[0.18em] text-sage">
           Anakanda kepada kedua-dua pasangan yang dihormati:
         </p>
       </Reveal>

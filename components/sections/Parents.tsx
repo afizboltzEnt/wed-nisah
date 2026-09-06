@@ -20,26 +20,26 @@ function Family({
       <p className="font-semibold uppercase tracking-[0.25em] text-burgundy/70">
         {title}
       </p>
-      <h3 className="mt-3 font-serif text-xl text-burgundy">{couple}</h3>
-      <p className="mt-4 font-display text-base text-sage">
-        <strong className="font-semibold text-sage">Ayahanda:</strong>
+      <h3 className="mt-3 font-serif text-xl text-burgundy-deep">{couple}</h3>
+      <p className="mt-4 font-display text-sm font-light leading-relaxed text-sage">
+        <strong className="font-normal text-burgundy-deep">Ayahanda:</strong>
         <br />
         {father}
       </p>
-      <p className="mt-3 font-display text-base text-sage">
-        <strong className="font-semibold text-sage">Bonda:</strong>
+      <p className="mt-3 font-display text-sm font-light leading-relaxed text-sage">
+        <strong className="font-normal text-burgundy-deep">Bonda:</strong>
         <br />
         {mother}
       </p>
       <div className="mt-4 space-y-1">
-        <p className="font-display text-sm text-gold-deep">
+        <p className="font-display text-[0.7rem] font-light uppercase tracking-[0.25em] text-gold-deep">
           Untuk Dihubungi:
         </p>
         {contacts.map((c) => (
           <a
             key={c.name}
             href={`tel:${c.phone.replace(/[- ]/g, "")}`}
-            className="block font-display text-base text-burgundy underline-offset-4 hover:underline"
+            className="block font-display text-sm font-normal text-burgundy underline-offset-4 hover:underline"
           >
             {c.name} — {c.phone}
           </a>
@@ -53,7 +53,7 @@ export default function Parents() {
   return (
     <section className="flex flex-col items-center py-10">
       <Reveal>
-        <p className="font-serif text-2xl text-burgundy">Ahli Keluarga</p>
+        <p className="font-serif text-2xl text-burgundy-deep">Ahli Keluarga</p>
       </Reveal>
 
       <Reveal delay={0.1} className="mt-8 w-full">

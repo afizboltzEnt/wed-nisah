@@ -11,12 +11,12 @@ export default function Closing() {
         </div>
       </Reveal>
       <Reveal delay={0.3}>
-        <p className="mt-2 font-serif text-2xl text-burgundy">
+        <p className="mt-2 font-serif text-2xl text-burgundy-deep">
           Sekian, terima kasih
         </p>
       </Reveal>
       <Reveal delay={0.4}>
-        <p className="mx-auto mt-3 max-w-xs font-display text-base italic leading-relaxed text-sage">
+        <p className="mx-auto mt-3 max-w-xs font-cormorant text-base italic leading-relaxed text-sage">
           Kehadiran dan doa anda adalah sinar kebahagiaan buat kami berdua.
         </p>
       </Reveal>
@@ -27,12 +27,12 @@ export default function Closing() {
         </p>
       </Reveal>
       <Reveal delay={0.6}>
-        <p className="mt-3 font-display text-sm tracking-[0.2em] text-sage-light">
+        <p className="mt-3 font-display text-[0.65rem] font-light uppercase tracking-[0.35em] text-sage-light">
           MUHAMMAD DANI FIRDAUS &amp; NURUL ANISAQ
         </p>
       </Reveal>
       <Reveal delay={0.7}>
-        <p className="mt-8 text-xs text-sage-light/60">
+        <p className="mt-8 font-display text-[0.65rem] font-light tracking-[0.15em] text-sage-light/70">
           Dibuat dengan ♥ untuk majlis walimatul urus kami
         </p>
       </Reveal>

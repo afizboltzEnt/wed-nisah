@@ -1,26 +1,28 @@
 @import "tailwindcss";
 
 @theme {
+  --color-ivory: #faf9f6;
   --color-cream: #fbf6ec;
   --color-paper: #f5eee0;
-  --color-burgundy: #8b2635;
-  --color-burgundy-deep: #6f1d2a;
+  --color-burgundy: #8b2a3a;
+  --color-burgundy-deep: #6b1d2f;
   --color-rose: #d9737e;
   --color-dusty: #c97b82;
   --color-sage: #4a5d4e;
   --color-sage-light: #7d9077;
-  --color-gold: #c9a227;
+  --color-gold: #d4af37;
   --color-gold-deep: #a8811f;
-  --color-gold-soft: #e6c978;
+  --color-gold-soft: #ecd98a;
 
   --font-serif: var(--font-playfair);
-  --font-display: var(--font-cormorant);
+  --font-display: var(--font-montserrat);
+  --font-cormorant: var(--font-cormorant);
 
   --animate-float: float 6s ease-in-out infinite;
   --animate-flutter: flutter 4s ease-in-out infinite;
   --animate-glow: glow 3s ease-in-out infinite;
 
-  --shadow-card: 0 20px 60px -20px rgba(111, 29, 42, 0.25);
+  --shadow-card: 0 20px 60px -20px rgba(107, 29, 47, 0.25);
 }
 
 @keyframes float {
@@ -58,9 +60,9 @@ html {
 }
 
 body {
-  background-color: var(--color-cream);
+  background-color: var(--color-ivory);
   color: var(--color-burgundy-deep);
-  font-family: var(--font-cormorant);
+  font-family: var(--font-display);
   -webkit-tap-highlight-color: transparent;
   overflow-x: hidden;
 }
@@ -84,11 +86,11 @@ body::before {
 .text-gold-foil {
   background: linear-gradient(
     100deg,
-    #8b6c1f 0%,
-    #c9a227 25%,
-    #f0d878 45%,
-    #c9a227 60%,
-    #8b6c1f 100%
+    #9c7a1f 0%,
+    #d4af37 25%,
+    #f6e27a 45%,
+    #d4af37 60%,
+    #9c7a1f 100%
   );
   background-size: 200% auto;
   -webkit-background-clip: text;

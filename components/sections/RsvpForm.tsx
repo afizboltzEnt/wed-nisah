@@ -7,7 +7,7 @@ import { supabase } from "@/lib/supabase";
 import type { RsvpInsert } from "@/lib/supabase";
 
 const inputCls =
-  "w-full rounded-lg border border-gold/40 bg-cream/70 px-4 py-3 font-display text-base text-burgundy-deep placeholder:text-sage-light/70 focus:border-gold focus:outline-none focus:ring-2 focus:ring-gold/30 transition";
+  "w-full rounded-lg border border-gold/40 bg-cream/70 px-4 py-3 font-display text-sm font-light text-burgundy-deep placeholder:text-sage-light/70 focus:border-gold focus:outline-none focus:ring-2 focus:ring-gold/30 transition";
 
 export default function RsvpForm() {
   const [name, setName] = useState("");
@@ -44,14 +44,16 @@ export default function RsvpForm() {
   return (
     <section className="flex flex-col items-center py-10 text-center">
       <Reveal>
-        <p className="font-serif text-2xl text-burgundy">
+        <p className="font-serif text-2xl text-burgundy-deep">
           Kehadiran (RSVP)
         </p>
       </Reveal>
       <Reveal delay={0.1}>
-        <p className="mt-2 font-display text-base italic text-sage">
+        <p className="mt-2 font-cormorant text-base italic text-sage">
           Sila sahkan kehadiran anda sebelum&nbsp;
-          <span className="text-gold-deep not-italic">20 Disember 2026</span>
+          <span className="font-display text-[0.7rem] font-normal uppercase tracking-[0.2em] text-gold-deep not-italic">
+            20 Disember 2026
+          </span>
         </p>
       </Reveal>
 
@@ -63,10 +65,10 @@ export default function RsvpForm() {
             className="rounded-xl border border-gold/50 bg-cream/80 px-6 py-8"
           >
             <div className="text-4xl">🌷</div>
-            <p className="mt-3 font-serif text-xl text-burgundy">
+            <p className="mt-3 font-serif text-xl text-burgundy-deep">
               Terima kasih, {name.trim()}!
             </p>
-            <p className="mt-2 font-display text-base text-sage">
+            <p className="mt-2 font-display text-sm font-light text-sage">
               Maklumat anda telah kami terima.{" "}
               {attendance === "hadir"
                 ? "Alhamdulillah, selamat datang."
@@ -84,7 +86,7 @@ export default function RsvpForm() {
               </p>
             )}
             <div>
-              <label className="mb-1.5 block font-display text-sm text-sage">
+              <label className="mb-1.5 block font-display text-[0.7rem] font-light uppercase tracking-[0.25em] text-sage">
                 Nama anda
               </label>
               <input
@@ -97,7 +99,7 @@ export default function RsvpForm() {
             </div>
 
             <div>
-              <label className="mb-1.5 block font-display text-sm text-sage">
+              <label className="mb-1.5 block font-display text-[0.7rem] font-light uppercase tracking-[0.25em] text-sage">
                 Kehadiran
               </label>
               <div className="grid grid-cols-2 gap-3">
@@ -109,7 +111,7 @@ export default function RsvpForm() {
                     key={val}
                     type="button"
                     onClick={() => setAttendance(val)}
-                    className={`rounded-lg border px-3 py-3 font-display text-sm tracking-wide transition active:scale-95 ${
+                    className={`rounded-lg border px-3 py-3 font-display text-xs font-normal uppercase tracking-[0.12em] transition active:scale-95 ${
                       attendance === val
                         ? "border-gold bg-burgundy text-gold-soft shadow"
                         : "border-gold/40 bg-cream/80 text-sage hover:border-gold"
@@ -123,7 +125,7 @@ export default function RsvpForm() {
 
             <div className="grid grid-cols-2 gap-3">
               <div>
-                <label className="mb-1.5 block font-display text-sm text-sage">
+                <label className="mb-1.5 block font-display text-[0.7rem] font-light uppercase tracking-[0.25em] text-sage">
                   Bilangan tetamu
                 </label>
                 <input
@@ -136,7 +138,7 @@ export default function RsvpForm() {
                 />
               </div>
               <div>
-                <label className="mb-1.5 block font-display text-sm text-sage">
+                <label className="mb-1.5 block font-display text-[0.7rem] font-light uppercase tracking-[0.25em] text-sage">
                   No. telefon <span className="text-sage-light/60">(opsional)</span>
                 </label>
                 <input
@@ -150,7 +152,7 @@ export default function RsvpForm() {
             </div>
 
             <div>
-              <label className="mb-1.5 block font-display text-sm text-sage">
+              <label className="mb-1.5 block font-display text-[0.7rem] font-light uppercase tracking-[0.25em] text-sage">
                 Ucapan &amp; doa <span className="text-sage-light/60">(opsional)</span>
               </label>
               <textarea
@@ -165,7 +167,7 @@ export default function RsvpForm() {
             <button
               type="submit"
               disabled={state === "loading"}
-              className="w-full rounded-full bg-burgundy py-3.5 font-display text-base tracking-[0.15em] text-gold-soft shadow-md transition hover:bg-burgundy-deep active:scale-[0.98] disabled:opacity-60"
+              className="w-full rounded-full bg-burgundy-deep py-3.5 font-display text-sm font-light uppercase tracking-[0.2em] text-gold-soft shadow-md transition hover:bg-burgundy active:scale-[0.98] disabled:opacity-60"
             >
               {state === "loading" ? "Menghantar…" : "Hantar & Sahkan ✦"}
             </button>
