@@ -230,11 +230,18 @@ export function FloralDivider({
   );
 }
 
+const CORNER_TRANSFORMS = {
+  tl: undefined,
+  tr: "translate(140,0) scale(-1,1)",
+  bl: "translate(0,140) scale(1,-1)",
+  br: "translate(140,140) scale(-1,-1)",
+} as const;
+
 export function CornerFloral({
   size = 140,
-  flip = false,
+  corner = "tl",
   ...props
-}: FlowerProps & { flip?: boolean }) {
+}: FlowerProps & { corner?: "tl" | "tr" | "bl" | "br" }) {
   return (
     <svg
       width={size}
@@ -243,7 +250,7 @@ export function CornerFloral({
       fill="none"
       {...props}
     >
-      <g transform={flip ? "translate(140,140) scale(-1,-1)" : undefined}>
+      <g transform={CORNER_TRANSFORMS[corner]}>
         <path
           d="M28 132 C 34 96, 40 78, 58 62 C 72 50, 84 42, 96 30 C 100 26, 106 20, 112 14"
           stroke={SAGE}

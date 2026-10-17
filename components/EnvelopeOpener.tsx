@@ -47,7 +47,7 @@ export default function EnvelopeOpener({ onOpen }: Props) {
         transition={{ delay: 0.35, duration: 0.8 }}
         className="mt-2 font-serif text-3xl text-burgundy-deep"
       >
-        Dani <span className="text-gold">&amp;</span> Anisah
+        Dani <span className="text-gold">&amp;</span> Anisaq
       </motion.h1>
 
       {/* Envelope */}

@@ -77,7 +77,7 @@ export default function AdminPage() {
         <header className="flex flex-wrap items-center justify-between gap-4">
           <div>
             <h1 className="font-serif text-3xl text-burgundy">
-              Senarai RSVP — Dani &amp; Anisah
+              Senarai RSVP — Dani &amp; Anisaq
             </h1>
             <p className="mt-1 font-display text-sm text-sage">
               Halaman khas untuk keluarga sahaja.

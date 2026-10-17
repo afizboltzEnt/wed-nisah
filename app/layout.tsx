@@ -28,13 +28,13 @@ const montserrat = Montserrat({
 });
 
 export const metadata: Metadata = {
-  title: "Walimatul Urus — Dani & Anisah",
+  title: "Walimatul Urus — Dani & Anisaq",
   description:
-    "Dengan penuh kesyukuran, kami menjemput Dato'/Datin, Tuan/Puan, Encik/Cik untuk meraikan hari bahagia perkahwinan Muhammad Dani Firdaus & Nurul Anisaq — 27 Disember 2026.",
+    "Dengan penuh kesyukuran, kami menjemput Dato'/Datin, Tuan/Puan, Encik/Cik untuk meraikan hari bahagia perkahwinan Muhammad Dani Firdaus & Nurul Anisaq — 26 Disember 2026.",
   openGraph: {
-    title: "Jemputan Kahwin — Dani & Anisah",
+    title: "Jemputan Kahwin — Dani & Anisaq",
     description:
-      "27 Disember 2026 — Sireh Junjung Banquet Hall, Encorp Strand Mall, Kota Damansara.",
+      "26 Disember 2026 — Sireh Junjung Banquet Hall, Encorp Strand Mall, Kota Damansara.",
     type: "website",
   },
 };

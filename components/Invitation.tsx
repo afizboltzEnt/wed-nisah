@@ -15,6 +15,7 @@ import DateVenue from "./sections/DateVenue";
 import RsvpForm from "./sections/RsvpForm";
 import Doa from "./sections/Doa";
 import Closing from "./sections/Closing";
+import Reveal from "./Reveal";
 import { FloralDivider } from "./floral/Flowers";
 
 export default function Invitation() {
@@ -49,10 +50,10 @@ export default function Invitation() {
   );
 }
 
-function CenteredDivider() {
+function CenteredDivider({ delay = 0 }: { delay?: number }) {
   return (
-    <div className="flex justify-center py-2">
+    <Reveal delay={delay} className="flex justify-center py-2">
       <FloralDivider size={190} />
-    </div>
+    </Reveal>
   );
 }

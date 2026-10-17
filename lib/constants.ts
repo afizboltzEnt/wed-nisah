@@ -1,6 +1,7 @@
 export const WEDDING = {
   groom: {
     name: "Muhammad Dani Firdaus",
+    shortName: "Dani",
     fullName: "Muhammad Dani Firdaus Bin Rosyalwadi",
     father: "Rosyalwadi Bin Hasisah @ Rusdi",
     mother: "Ernieaida Azhana Binti Zahari",
@@ -12,6 +13,7 @@ export const WEDDING = {
   },
   bride: {
     name: "Nurul Anisaq",
+    shortName: "Anisaq",
     fullName: "Nurul Anisaq Binti Kamaruzaini",
     father: "Kamaruzaini Bin Ab Rahman",
     mother: "Tuan Noor Akmal Binti Tuan Mansor",
@@ -21,8 +23,9 @@ export const WEDDING = {
     ],
     initials: "A",
   },
-  dateLong: "Ahad, 27 Disember 2026",
-  dateNum: "27.12.2026",
+  dateLong: "Sabtu, 26 Disember 2026",
+  dateNum: "26.12.2026",
+  dayShort: "Sabtu",
   time: "Selepas Zohor & Seterusnya",
   timeStart: "2:00 petang",
   venue: "Sireh Junjung Banquet Hall",
