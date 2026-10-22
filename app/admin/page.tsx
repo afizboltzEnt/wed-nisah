@@ -1,7 +1,9 @@
 "use client";
 
 import { useCallback, useEffect, useState } from "react";
+import { motion } from "motion/react";
 import type { RsvpRow } from "@/lib/supabase";
+import { fadeUp, staggerContainer } from "@/lib/motion";
 
 type Summary = {
   total: number;
@@ -72,7 +74,7 @@ export default function AdminPage() {
   };
 
   return (
-    <main className="min-h-screen bg-[radial-gradient(120%_120%_at_50%_30%,#fbf6ec_0%,#e9dcc3_55%,#cdb18a_100%)] px-4 py-10">
+    <main className="bg-invite-gradient min-h-screen px-4 py-10">
       <div className="mx-auto max-w-3xl">
         <header className="flex flex-wrap items-center justify-between gap-4">
           <div>
@@ -136,24 +138,30 @@ export default function AdminPage() {
 
         {state.status === "ready" && (
           <>
-            <div className="mt-8 grid grid-cols-2 gap-3 sm:grid-cols-4">
+            <motion.div
+              className="mt-8 grid grid-cols-2 gap-3 sm:grid-cols-4"
+              variants={staggerContainer(0.08)}
+              initial="hidden"
+              animate="show"
+            >
               {[
                 ["Jumlah", state.summary.total],
                 ["Hadir", state.summary.hadir],
                 ["Tidak", state.summary.tidak],
                 ["Tetamu", state.summary.guests],
               ].map(([label, value]) => (
-                <div
+                <motion.div
                   key={label}
-                  className="rounded-xl border border-gold/40 bg-paper p-4 text-center shadow-sm"
+                  variants={fadeUp}
+                  className="rounded-xl border border-gold/40 bg-paper p-4 text-center shadow-card"
                 >
                   <p className="font-serif text-3xl text-gold-foil">{value}</p>
                   <p className="mt-1 font-display text-sm text-sage">
                     {label}
                   </p>
-                </div>
+                </motion.div>
               ))}
-            </div>
+            </motion.div>
 
             <div className="mt-8 space-y-3">
               {state.rows.length === 0 && (
@@ -161,10 +169,13 @@ export default function AdminPage() {
                   Belum ada sebarang RSVP.
                 </p>
               )}
-              {state.rows.map((r) => (
-                <div
+              {state.rows.map((r, i) => (
+                <motion.div
                   key={r.id}
-                  className="rounded-xl border border-gold/30 bg-paper/90 p-5 shadow-sm"
+                  initial={{ opacity: 0, y: 12 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: Math.min(i * 0.03, 0.6), duration: 0.4 }}
+                  className="rounded-xl border border-gold/30 bg-paper/90 p-5 shadow-card"
                 >
                   <div className="flex flex-wrap items-center justify-between gap-2">
                     <p className="font-display text-base font-semibold text-burgundy">
@@ -203,7 +214,7 @@ export default function AdminPage() {
                       &ldquo;{r.message}&rdquo;
                     </p>
                   )}
-                </div>
+                </motion.div>
               ))}
             </div>
           </>
