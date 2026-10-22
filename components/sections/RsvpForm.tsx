@@ -1,11 +1,22 @@
 "use client";
 
 import { useState } from "react";
-import { motion } from "motion/react";
+import { motion, type Variants } from "motion/react";
 import { StaggerGroup, StaggerItem } from "../Stagger";
 import { supabase } from "@/lib/supabase";
 import type { RsvpInsert } from "@/lib/supabase";
-import { fadeUp, scaleIn, staggerContainer } from "@/lib/motion";
+import { fadeUp, DUR, easeOut } from "@/lib/motion";
+
+// scaleIn, but with its own staggerChildren so the form fields cascade
+// together with this card's scroll-triggered reveal instead of on mount.
+const cardStagger: Variants = {
+  hidden: { opacity: 0, scale: 0.92 },
+  show: {
+    opacity: 1,
+    scale: 1,
+    transition: { duration: DUR.base, ease: easeOut, staggerChildren: 0.08 },
+  },
+};
 
 const inputCls =
   "w-full rounded-lg border border-gold/40 bg-cream/70 px-4 py-3 font-display text-sm font-light text-burgundy-deep placeholder:text-sage-light/70 focus:border-gold focus:outline-none focus:ring-2 focus:ring-gold/30 transition";
@@ -59,7 +70,7 @@ export default function RsvpForm() {
           </p>
         </StaggerItem>
 
-        <StaggerItem variants={scaleIn} className="mt-6 w-full">
+        <StaggerItem variants={cardStagger} className="mt-6 w-full">
           {state === "done" ? (
             <motion.div
               initial={{ opacity: 0, scale: 0.95 }}
@@ -78,11 +89,8 @@ export default function RsvpForm() {
               </p>
             </motion.div>
           ) : (
-            <motion.form
+            <form
               onSubmit={submit}
-              variants={staggerContainer(0.08)}
-              initial="hidden"
-              animate="show"
               className="space-y-4 rounded-xl border border-gold/40 bg-cream/60 p-6 text-left shadow-sm"
             >
               {state === "error" && (
@@ -117,7 +125,7 @@ export default function RsvpForm() {
                       type="button"
                       onClick={() => setAttendance(val)}
                       whileTap={{ scale: 0.95 }}
-                      className={`rounded-lg border px-3 py-3 font-display text-xs font-normal uppercase tracking-[0.12em] transition-all ${
+                      className={`rounded-lg border px-3 py-3 font-display text-xs font-normal uppercase tracking-[0.12em] transition-[background-color,border-color,color,box-shadow] duration-200 ${
                         attendance === val
                           ? "border-gold bg-burgundy text-gold-soft shadow"
                           : "border-gold/40 bg-cream/80 text-sage hover:border-gold"
@@ -178,7 +186,7 @@ export default function RsvpForm() {
               >
                 {state === "loading" ? "Menghantar…" : "Hantar & Sahkan ✦"}
               </motion.button>
-            </motion.form>
+            </form>
           )}
         </StaggerItem>
       </StaggerGroup>

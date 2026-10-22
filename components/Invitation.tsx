@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { AnimatePresence, MotionConfig } from "motion/react";
 import EnvelopeOpener from "./EnvelopeOpener";
 import Particles from "./Particles";
@@ -20,33 +20,39 @@ import SectionDivider from "./floral/SectionDivider";
 export default function Invitation() {
   const [opened, setOpened] = useState(false);
 
+  // Lock document scroll while the gate is up. Cover/PageFrame stay mounted the
+  // whole time (SSR content + hero image preload), but without this a guest
+  // could scroll the page behind the still-opaque overlay and spend every
+  // section's one-shot whileInView reveal before ever seeing it.
+  useEffect(() => {
+    document.body.style.overflow = opened ? "" : "hidden";
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [opened]);
+
   return (
     <MotionConfig reducedMotion="user">
       <Particles />
 
-      {/* Mounted only once the envelope opens, so Cover's reveal fires for the guest
-          instead of completing invisibly behind the gate (see ledger). */}
-      {opened && (
-        <>
-          <Cover />
-          <PageFrame>
-            <Bismillah />
-            <InvitationMessage />
-            <SectionDivider />
-            <Couple />
-            <SectionDivider />
-            <Parents />
-            <SectionDivider />
-            <DateVenue />
-            <SectionDivider />
-            <RsvpForm />
-            <SectionDivider />
-            <Doa />
-            <Closing />
-          </PageFrame>
-          <MusicPlayer />
-        </>
-      )}
+      <Cover opened={opened} />
+      <PageFrame>
+        <Bismillah />
+        <InvitationMessage />
+        <SectionDivider />
+        <Couple />
+        <SectionDivider />
+        <Parents />
+        <SectionDivider />
+        <DateVenue />
+        <SectionDivider />
+        <RsvpForm />
+        <SectionDivider />
+        <Doa />
+        <Closing />
+      </PageFrame>
+
+      {opened && <MusicPlayer />}
 
       <AnimatePresence>
         {!opened && <EnvelopeOpener onOpen={() => setOpened(true)} />}

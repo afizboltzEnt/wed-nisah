@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import { playMusic } from "@/lib/audio";
 import { Monogram } from "./Monogram";
@@ -21,6 +21,24 @@ export default function EnvelopeOpener({ onOpen }: Props) {
     void playMusic();
     setStage("opening");
   };
+
+  // Backstops: the real sequencing is animation-driven (onAnimationComplete
+  // below), but a guest must never be stuck on a blank gate if a callback
+  // is ever missed. These are no-ops once the animation path has advanced.
+  useEffect(() => {
+    if (stage !== "opening") return;
+    const t = setTimeout(
+      () => setStage((s) => (s === "opening" ? "opened" : s)),
+      1600
+    );
+    return () => clearTimeout(t);
+  }, [stage]);
+
+  useEffect(() => {
+    if (stage !== "opened") return;
+    const t = setTimeout(onOpen, 900);
+    return () => clearTimeout(t);
+  }, [stage, onOpen]);
 
   return (
     <motion.div
@@ -160,7 +178,9 @@ export default function EnvelopeOpener({ onOpen }: Props) {
         onClick={handleOpen}
         initial={{ opacity: 0 }}
         animate={{ opacity: stage === "idle" ? 1 : 0 }}
-        transition={{ delay: 0.9, duration: 0.6 }}
+        transition={
+          stage === "idle" ? { delay: 0.9, duration: 0.6 } : { duration: 0.3 }
+        }
         className="mt-10 rounded-full border border-gold px-6 py-2.5 font-display text-xs font-medium uppercase tracking-[0.25em] text-gold-deep shadow-sm transition hover:bg-gold hover:text-cream"
       >
         Tekan Setem Untuk Membuka

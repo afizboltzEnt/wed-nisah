@@ -1,5 +1,4 @@
 import type { ReactNode } from "react";
-import ScrollReveal from "./ScrollReveal";
 
 type Props = {
   children: ReactNode;
@@ -18,13 +17,14 @@ export default function PageFrame({ children }: Props) {
           }}
         />
 
-        <ScrollReveal y={20}>
-          <div className="relative overflow-hidden rounded-[20px] bg-paper/70 shadow-card backdrop-blur-[2px]">
-            <div className="relative z-10 px-6 py-10 sm:px-9 sm:py-12">
-              {children}
-            </div>
+        {/* No outer entrance animation here: each section below already animates
+            itself on scroll. A card this tall can never cross a whileInView
+            threshold as a single unit (see ledger — this used to ship invisible). */}
+        <div className="relative overflow-hidden rounded-[20px] bg-paper/70 shadow-card backdrop-blur-[2px]">
+          <div className="relative z-10 px-6 py-10 sm:px-9 sm:py-12">
+            {children}
           </div>
-        </ScrollReveal>
+        </div>
       </div>
     </main>
   );

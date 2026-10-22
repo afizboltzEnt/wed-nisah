@@ -2,10 +2,18 @@
 
 import Image from "next/image";
 import { motion } from "motion/react";
-import { StaggerGroup, StaggerItem } from "../Stagger";
+import { StaggerItem } from "../Stagger";
 import { WEDDING } from "@/lib/constants";
 import { Leaf, Fern } from "../floral/Flowers";
-import { drawLine, scaleIn } from "@/lib/motion";
+import { drawLine, scaleIn, staggerContainer } from "@/lib/motion";
+
+type Props = {
+  /** Cover is always mounted (for SSR content + hero image preload), but its
+   * reveal is gated on the envelope having opened rather than on scroll —
+   * it's the very first thing on the page, so whileInView would fire the
+   * instant it mounts, i.e. behind the still-opaque gate. */
+  opened: boolean;
+};
 
 function EdgeStrip({ side }: { side: "top" | "bottom" }) {
   const flip = side === "bottom";
@@ -25,7 +33,7 @@ function EdgeStrip({ side }: { side: "top" | "bottom" }) {
   );
 }
 
-export default function Cover() {
+export default function Cover({ opened }: Props) {
   return (
     <section className="relative flex min-h-[100svh] flex-col items-center justify-center overflow-hidden px-4 py-16 text-center">
       {/* hero-scale gold pinstripe — the single full-fidelity moment matching the PDF card */}
@@ -74,7 +82,12 @@ export default function Cover() {
       <EdgeStrip side="top" />
       <EdgeStrip side="bottom" />
 
-      <StaggerGroup className="relative z-10 flex flex-col items-center" stagger={0.18}>
+      <motion.div
+        className="relative z-10 flex flex-col items-center"
+        variants={staggerContainer(0.18)}
+        initial="hidden"
+        animate={opened ? "show" : "hidden"}
+      >
         <StaggerItem variants={scaleIn}>
           <Image
             src="/flowers/monogram.webp"
@@ -131,7 +144,7 @@ export default function Cover() {
             Sireh Junjung Banquet Hall, Encorp Strand Mall, Kota Damansara
           </p>
         </StaggerItem>
-      </StaggerGroup>
+      </motion.div>
     </section>
   );
 }
