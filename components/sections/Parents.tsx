@@ -1,6 +1,8 @@
-import Reveal from "../Reveal";
+import { StaggerGroup, StaggerItem } from "../Stagger";
 import { WEDDING } from "@/lib/constants";
 import { Leaf } from "../floral/Flowers";
+import { slideFrom } from "@/lib/motion";
+import BorderFrame from "../floral/BorderFrame";
 
 function Family({
   title,
@@ -51,36 +53,39 @@ function Family({
 
 export default function Parents() {
   return (
-    <section className="flex flex-col items-center py-10">
-      <Reveal>
-        <p className="font-serif text-2xl text-burgundy-deep">Ahli Keluarga</p>
-      </Reveal>
+    <section className="relative flex flex-col items-center py-10">
+      <BorderFrame corners={["bl"]} />
+      <StaggerGroup className="relative z-10 flex w-full flex-col items-center" stagger={0.2}>
+        <StaggerItem>
+          <p className="font-serif text-2xl text-burgundy-deep">Ahli Keluarga</p>
+        </StaggerItem>
 
-      <Reveal delay={0.1} className="mt-8 w-full">
-        <Family
-          title="Pihak Lelaki"
-          couple={`${WEDDING.groom.name} & Keluarga`}
-          father={WEDDING.groom.father}
-          mother={WEDDING.groom.mother}
-          contacts={WEDDING.groom.contact}
-        />
-      </Reveal>
+        <StaggerItem variants={slideFrom(-24)} className="mt-8 w-full">
+          <Family
+            title="Pihak Lelaki"
+            couple={`${WEDDING.groom.name} & Keluarga`}
+            father={WEDDING.groom.father}
+            mother={WEDDING.groom.mother}
+            contacts={WEDDING.groom.contact}
+          />
+        </StaggerItem>
 
-      <Reveal delay={0.2} className="my-8 flex items-center">
-        <Leaf size={22} flip />
-        <span className="mx-3 text-gold">✦</span>
-        <Leaf size={22} />
-      </Reveal>
+        <StaggerItem className="my-8 flex items-center">
+          <Leaf size={22} flip />
+          <span className="mx-3 text-gold">✦</span>
+          <Leaf size={22} />
+        </StaggerItem>
 
-      <Reveal delay={0.3} className="w-full">
-        <Family
-          title="Pihak Perempuan"
-          couple={`${WEDDING.bride.name} & Keluarga`}
-          father={WEDDING.bride.father}
-          mother={WEDDING.bride.mother}
-          contacts={WEDDING.bride.contact}
-        />
-      </Reveal>
+        <StaggerItem variants={slideFrom(24)} className="w-full">
+          <Family
+            title="Pihak Perempuan"
+            couple={`${WEDDING.bride.name} & Keluarga`}
+            father={WEDDING.bride.father}
+            mother={WEDDING.bride.mother}
+            contacts={WEDDING.bride.contact}
+          />
+        </StaggerItem>
+      </StaggerGroup>
     </section>
   );
 }

@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { AnimatePresence } from "framer-motion";
+import { AnimatePresence, MotionConfig } from "motion/react";
 import EnvelopeOpener from "./EnvelopeOpener";
 import Particles from "./Particles";
 import MusicPlayer from "./MusicPlayer";
@@ -15,45 +15,42 @@ import DateVenue from "./sections/DateVenue";
 import RsvpForm from "./sections/RsvpForm";
 import Doa from "./sections/Doa";
 import Closing from "./sections/Closing";
-import Reveal from "./Reveal";
-import { FloralDivider } from "./floral/Flowers";
+import SectionDivider from "./floral/SectionDivider";
 
 export default function Invitation() {
   const [opened, setOpened] = useState(false);
 
   return (
-    <>
+    <MotionConfig reducedMotion="user">
       <Particles />
-      <PageFrame>
-        <Cover />
-        <Bismillah />
-        <InvitationMessage />
-        <CenteredDivider />
-        <Couple />
-        <CenteredDivider />
-        <Parents />
-        <CenteredDivider />
-        <DateVenue />
-        <CenteredDivider />
-        <RsvpForm />
-        <CenteredDivider />
-        <Doa />
-        <Closing />
-      </PageFrame>
 
-      {opened && <MusicPlayer />}
+      {/* Mounted only once the envelope opens, so Cover's reveal fires for the guest
+          instead of completing invisibly behind the gate (see ledger). */}
+      {opened && (
+        <>
+          <Cover />
+          <PageFrame>
+            <Bismillah />
+            <InvitationMessage />
+            <SectionDivider />
+            <Couple />
+            <SectionDivider />
+            <Parents />
+            <SectionDivider />
+            <DateVenue />
+            <SectionDivider />
+            <RsvpForm />
+            <SectionDivider />
+            <Doa />
+            <Closing />
+          </PageFrame>
+          <MusicPlayer />
+        </>
+      )}
 
       <AnimatePresence>
         {!opened && <EnvelopeOpener onOpen={() => setOpened(true)} />}
       </AnimatePresence>
-    </>
-  );
-}
-
-function CenteredDivider({ delay = 0 }: { delay?: number }) {
-  return (
-    <Reveal delay={delay} className="flex justify-center py-2">
-      <FloralDivider size={190} />
-    </Reveal>
+    </MotionConfig>
   );
 }
