@@ -4,13 +4,13 @@ type FlowerProps = SVGProps<SVGSVGElement> & {
   size?: number;
 };
 
-const BURGUNDY = "#8b2635";
-const BURGUNDY_DEEP = "#6f1d2a";
-const ROSE = "#d9737e";
-const DUSTY = "#c97b82";
-const SAGE = "#4a5d4e";
-const SAGE_LIGHT = "#7d9077";
-const CREAM = "#fbf6ec";
+const BURGUNDY = "#c4607a";
+const BURGUNDY_DEEP = "#8c3a52";
+const ROSE = "#e18fa0";
+const DUSTY = "#d9a0ac";
+const SAGE = "#7a9174";
+const SAGE_LIGHT = "#a8bfa0";
+const CREAM = "#fff8f4";
 
 export function PeonyBloom({
   size = 40,

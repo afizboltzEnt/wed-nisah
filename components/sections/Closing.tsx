@@ -1,6 +1,6 @@
-import Image from "next/image";
 import { StaggerGroup, StaggerItem } from "../Stagger";
 import { WEDDING } from "@/lib/constants";
+import { Monogram } from "../Monogram";
 import { scaleIn } from "@/lib/motion";
 
 export default function Closing() {
@@ -8,13 +8,9 @@ export default function Closing() {
     <section className="flex flex-col items-center pt-10 text-center">
       <StaggerGroup className="flex flex-col items-center" stagger={0.15}>
         <StaggerItem variants={scaleIn}>
-          <Image
-            src="/flowers/monogram.webp"
-            alt={`${WEDDING.groom.shortName} & ${WEDDING.bride.shortName}`}
-            width={363}
-            height={409}
-            className="-mt-2 h-auto w-[72px]"
-          />
+          <div className="-mt-2">
+            <Monogram size={72} />
+          </div>
         </StaggerItem>
         <StaggerItem>
           <p className="mt-2 font-serif text-2xl text-burgundy-deep">

@@ -14,11 +14,11 @@ export function Monogram({
     >
       <defs>
         <linearGradient id="goldfoil" x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0%" stopColor="#9c7a1f" />
-          <stop offset="30%" stopColor="#d4af37" />
-          <stop offset="50%" stopColor="#f6e27a" />
-          <stop offset="72%" stopColor="#d4af37" />
-          <stop offset="100%" stopColor="#9c7a1f" />
+          <stop offset="0%" stopColor="#a9765c" />
+          <stop offset="30%" stopColor="#c9967d" />
+          <stop offset="50%" stopColor="#f0d4c2" />
+          <stop offset="72%" stopColor="#c9967d" />
+          <stop offset="100%" stopColor="#a9765c" />
         </linearGradient>
       </defs>
       <ellipse
@@ -38,7 +38,7 @@ export function Monogram({
         cy="60"
         rx="40"
         ry="40"
-        fill="#8b2a3a"
+        fill="#c4607a"
         opacity="0.07"
         stroke="url(#goldfoil)"
         strokeWidth="0.9"
