@@ -1,22 +1,15 @@
 "use client";
 
 import { useState } from "react";
-import { motion, type Variants } from "motion/react";
+import { motion } from "motion/react";
 import { StaggerGroup, StaggerItem } from "../Stagger";
 import { supabase } from "@/lib/supabase";
 import type { RsvpInsert } from "@/lib/supabase";
-import { fadeUp, DUR, easeOut } from "@/lib/motion";
+import { fadeUp, scaleIn, withStagger } from "@/lib/motion";
 
-// scaleIn, but with its own staggerChildren so the form fields cascade
-// together with this card's scroll-triggered reveal instead of on mount.
-const cardStagger: Variants = {
-  hidden: { opacity: 0, scale: 0.92 },
-  show: {
-    opacity: 1,
-    scale: 1,
-    transition: { duration: DUR.base, ease: easeOut, staggerChildren: 0.08 },
-  },
-};
+// scaleIn, but staggering its own variant children, so the form fields
+// cascade together with this card's scroll-triggered reveal instead of on mount.
+const cardStagger = withStagger(scaleIn, 0.08);
 
 const inputCls =
   "w-full rounded-lg border border-gold/40 bg-cream/70 px-4 py-3 font-display text-sm font-light text-burgundy-deep placeholder:text-sage-light/70 focus:border-gold focus:outline-none focus:ring-2 focus:ring-gold/30 transition";
