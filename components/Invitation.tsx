@@ -1,7 +1,7 @@
 "use client";
 
-import { useState } from "react";
-import { AnimatePresence } from "framer-motion";
+import { useEffect, useState } from "react";
+import { AnimatePresence, MotionConfig } from "motion/react";
 import EnvelopeOpener from "./EnvelopeOpener";
 import Particles from "./Particles";
 import MusicPlayer from "./MusicPlayer";
@@ -15,28 +15,39 @@ import DateVenue from "./sections/DateVenue";
 import RsvpForm from "./sections/RsvpForm";
 import Doa from "./sections/Doa";
 import Closing from "./sections/Closing";
-import Reveal from "./Reveal";
-import { FloralDivider } from "./floral/Flowers";
+import SectionDivider from "./floral/SectionDivider";
 
 export default function Invitation() {
   const [opened, setOpened] = useState(false);
 
+  // Lock document scroll while the gate is up. Cover/PageFrame stay mounted the
+  // whole time (SSR content + hero image preload), but without this a guest
+  // could scroll the page behind the still-opaque overlay and spend every
+  // section's one-shot whileInView reveal before ever seeing it.
+  useEffect(() => {
+    document.body.style.overflow = opened ? "" : "hidden";
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [opened]);
+
   return (
-    <>
+    <MotionConfig reducedMotion="user">
       <Particles />
+
+      <Cover opened={opened} />
       <PageFrame>
-        <Cover />
         <Bismillah />
         <InvitationMessage />
-        <CenteredDivider />
+        <SectionDivider />
         <Couple />
-        <CenteredDivider />
+        <SectionDivider />
         <Parents />
-        <CenteredDivider />
+        <SectionDivider />
         <DateVenue />
-        <CenteredDivider />
+        <SectionDivider />
         <RsvpForm />
-        <CenteredDivider />
+        <SectionDivider />
         <Doa />
         <Closing />
       </PageFrame>
@@ -46,14 +57,6 @@ export default function Invitation() {
       <AnimatePresence>
         {!opened && <EnvelopeOpener onOpen={() => setOpened(true)} />}
       </AnimatePresence>
-    </>
-  );
-}
-
-function CenteredDivider({ delay = 0 }: { delay?: number }) {
-  return (
-    <Reveal delay={delay} className="flex justify-center py-2">
-      <FloralDivider size={190} />
-    </Reveal>
+    </MotionConfig>
   );
 }

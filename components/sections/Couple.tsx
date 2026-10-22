@@ -1,6 +1,9 @@
-import Reveal from "../Reveal";
+import { motion } from "motion/react";
+import { StaggerGroup, StaggerItem } from "../Stagger";
 import { WEDDING } from "@/lib/constants";
-import { FloralDivider } from "../floral/Flowers";
+import { scaleIn, drawLine } from "@/lib/motion";
+import SectionDivider from "../floral/SectionDivider";
+import BorderFrame from "../floral/BorderFrame";
 
 function Person({
   initials,
@@ -13,7 +16,10 @@ function Person({
 }) {
   return (
     <div className="flex flex-col items-center text-center">
-      <div className="relative flex h-28 w-28 items-center justify-center rounded-full border border-gold/60 shadow-lg" style={{ background: "radial-gradient(circle at 35% 30%, #fdf8f0, #efe2c8)" }}>
+      <div
+        className="relative flex h-28 w-28 items-center justify-center rounded-full border border-gold/60 shadow-lg"
+        style={{ background: "radial-gradient(circle at 35% 30%, #fdf8f0, #efe2c8)" }}
+      >
         <div className="absolute inset-2 rounded-full border border-gold/40" />
         <span className="font-serif text-3xl text-gold-foil">{initials}</span>
       </div>
@@ -27,48 +33,57 @@ function Person({
 
 export default function Couple() {
   return (
-    <section className="flex flex-col items-center py-10">
-      <Reveal>
-        <p className="font-serif text-2xl text-burgundy-deep">
-          Pasangan Yang Bakal Dinikahkan
-        </p>
-      </Reveal>
-      <Reveal delay={0.1}>
-        <p className="mt-2 font-cormorant text-lg italic text-sage-light">
-          &ldquo;The Wedding of&rdquo;
-        </p>
-      </Reveal>
+    <section className="relative flex flex-col items-center py-10">
+      <BorderFrame corners={["tr"]} />
+      <StaggerGroup className="relative z-10 flex w-full flex-col items-center">
+        <StaggerItem>
+          <p className="font-serif text-2xl text-burgundy-deep">
+            Pasangan Yang Bakal Dinikahkan
+          </p>
+        </StaggerItem>
+        <StaggerItem>
+          <p className="mt-2 font-cormorant text-lg italic text-sage-light">
+            &ldquo;The Wedding of&rdquo;
+          </p>
+        </StaggerItem>
 
-      <Reveal delay={0.2} className="mt-8 w-full">
-        <Person
-          initials="D"
-          name={WEDDING.groom.name}
-          short={WEDDING.groom.fullName}
-        />
-      </Reveal>
+        <StaggerItem variants={scaleIn} className="mt-8 w-full">
+          <Person
+            initials="D"
+            name={WEDDING.groom.name}
+            short={WEDDING.groom.fullName}
+          />
+        </StaggerItem>
 
-      <Reveal delay={0.2} className="my-6 flex items-center gap-4">
-        <span className="h-px flex-1 bg-gold/50" />
-        <span className="font-serif text-2xl italic text-gold-deep">&amp;</span>
-        <span className="h-px flex-1 bg-gold/50" />
-      </Reveal>
+        <StaggerItem className="my-6 flex w-full items-center gap-4">
+          <motion.span
+            variants={drawLine}
+            style={{ transformOrigin: "center" }}
+            className="h-px flex-1 bg-gold/50"
+          />
+          <span className="font-serif text-2xl italic text-gold-deep">&amp;</span>
+          <motion.span
+            variants={drawLine}
+            style={{ transformOrigin: "center" }}
+            className="h-px flex-1 bg-gold/50"
+          />
+        </StaggerItem>
 
-      <Reveal delay={0.3} className="w-full">
-        <Person
-          initials="A"
-          name={WEDDING.bride.name}
-          short={WEDDING.bride.fullName}
-        />
-      </Reveal>
+        <StaggerItem variants={scaleIn} className="w-full">
+          <Person
+            initials="A"
+            name={WEDDING.bride.name}
+            short={WEDDING.bride.fullName}
+          />
+        </StaggerItem>
 
-      <Reveal delay={0.4} className="mt-8 text-center">
-        <p className="font-display text-sm font-light uppercase leading-relaxed tracking-[0.18em] text-sage">
-          Anakanda kepada kedua-dua pasangan yang dihormati:
-        </p>
-      </Reveal>
-      <Reveal delay={0.5} className="mt-4">
-        <FloralDivider size={190} />
-      </Reveal>
+        <StaggerItem className="mt-8 text-center">
+          <p className="font-display text-sm font-light uppercase leading-relaxed tracking-[0.18em] text-sage">
+            Anakanda kepada kedua-dua pasangan yang dihormati:
+          </p>
+        </StaggerItem>
+      </StaggerGroup>
+      <SectionDivider className="relative z-10 mt-4 flex justify-center py-2" />
     </section>
   );
 }
