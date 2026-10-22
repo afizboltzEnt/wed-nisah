@@ -57,7 +57,7 @@ export default function Parents() {
       <BorderFrame corners={["bl"]} />
       <StaggerGroup className="relative z-10 flex w-full flex-col items-center" stagger={0.2}>
         <StaggerItem>
-          <p className="font-serif text-2xl text-burgundy-deep">Ahli Keluarga</p>
+          <p className="font-script text-4xl text-burgundy">Ahli Keluarga</p>
         </StaggerItem>
 
         <StaggerItem variants={slideFrom(-24)} className="mt-8 w-full">

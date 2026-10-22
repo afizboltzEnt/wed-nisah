@@ -17,7 +17,7 @@ const inputCls =
 export default function RsvpForm() {
   const [name, setName] = useState("");
   const [attendance, setAttendance] = useState<"hadir" | "tidak" | "">("");
-  const [guestCount, setGuestCount] = useState("1");
+  const [guestCount, setGuestCount] = useState(1);
   const [phone, setPhone] = useState("");
   const [message, setMessage] = useState("");
   const [state, setState] = useState<"idle" | "loading" | "done" | "error">(
@@ -31,10 +31,7 @@ export default function RsvpForm() {
     const payload: RsvpInsert = {
       name: name.trim(),
       attendance,
-      guest_count: Math.min(
-        20,
-        Math.max(1, parseInt(guestCount, 10) || 1)
-      ),
+      guest_count: guestCount,
       phone: phone.trim() || null,
       message: message.trim() || null,
     };
@@ -47,11 +44,15 @@ export default function RsvpForm() {
   };
 
   return (
-    <section className="flex flex-col items-center py-10 text-center">
+    <section className="flex flex-col items-center py-10 text-center" id="rsvp">
       <StaggerGroup className="flex w-full flex-col items-center">
         <StaggerItem>
-          <p className="font-serif text-2xl text-burgundy-deep">
-            Kehadiran (RSVP)
+          <span className="rounded-full bg-burgundy px-4 py-1 font-display text-[0.65rem] font-medium uppercase tracking-[0.25em] text-gold-soft">
+            RSVP
+          </span>
+          <p className="mt-3 font-script text-4xl text-burgundy">Rsvp</p>
+          <p className="font-display text-sm italic text-sage">
+            We hope you can join us
           </p>
         </StaggerItem>
         <StaggerItem>
@@ -135,14 +136,27 @@ export default function RsvpForm() {
                   <label className="mb-1.5 block font-display text-[0.7rem] font-light uppercase tracking-[0.25em] text-sage">
                     Bilangan tetamu
                   </label>
-                  <input
-                    type="number"
-                    min={1}
-                    max={20}
-                    className={inputCls}
-                    value={guestCount}
-                    onChange={(e) => setGuestCount(e.target.value)}
-                  />
+                  <div className="flex items-center justify-between rounded-lg border border-gold/40 bg-cream/70 px-2 py-1.5">
+                    <button
+                      type="button"
+                      aria-label="Kurangkan bilangan tetamu"
+                      onClick={() => setGuestCount((n) => Math.max(1, n - 1))}
+                      className="flex h-8 w-8 items-center justify-center rounded-full font-display text-lg text-burgundy transition hover:bg-gold/20"
+                    >
+                      −
+                    </button>
+                    <span className="font-serif text-lg text-burgundy-deep">
+                      {guestCount}
+                    </span>
+                    <button
+                      type="button"
+                      aria-label="Tambah bilangan tetamu"
+                      onClick={() => setGuestCount((n) => Math.min(20, n + 1))}
+                      className="flex h-8 w-8 items-center justify-center rounded-full font-display text-lg text-burgundy transition hover:bg-gold/20"
+                    >
+                      +
+                    </button>
+                  </div>
                 </div>
                 <div>
                   <label className="mb-1.5 block font-display text-[0.7rem] font-light uppercase tracking-[0.25em] text-sage">

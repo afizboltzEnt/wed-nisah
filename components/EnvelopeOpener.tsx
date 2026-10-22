@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import { playMusic } from "@/lib/audio";
 import { Monogram } from "./Monogram";
-import { CornerFloral } from "./floral/Flowers";
+import { CornerFloral, Fern } from "./floral/Flowers";
 import { softSpring, easeInOut, easeOut } from "@/lib/motion";
 
 type Props = {
@@ -42,12 +42,22 @@ export default function EnvelopeOpener({ onOpen }: Props) {
 
   return (
     <motion.div
-      className="bg-invite-gradient fixed inset-0 z-[100] mx-auto flex max-w-[430px] flex-col items-center justify-center overflow-hidden px-6"
+      className="fixed inset-0 z-[100] flex flex-col items-center justify-center overflow-hidden px-6"
+      style={{
+        background:
+          "linear-gradient(160deg, #bfcba3 0%, #9aa77f 55%, #7c8a63 100%)",
+      }}
       exit={{ opacity: 0 }}
       transition={{ duration: 0.6, ease: easeInOut }}
     >
-      {/* corner florals previewing the frame the guest is about to enter */}
-      <div className="pointer-events-none absolute inset-0 overflow-hidden opacity-60" aria-hidden>
+      {/* embossed floral line art on the envelope paper */}
+      <div className="pointer-events-none absolute inset-0 overflow-hidden opacity-25" aria-hidden>
+        <Fern size={220} className="absolute -left-10 -top-6 h-auto w-[220px]" />
+        <Fern size={220} flip className="absolute -right-10 -top-6 h-auto w-[220px]" />
+        <Fern size={180} flip className="absolute -bottom-8 -left-6 h-auto w-[180px]" />
+        <Fern size={180} className="absolute -bottom-8 -right-6 h-auto w-[180px]" />
+      </div>
+      <div className="pointer-events-none absolute inset-0 overflow-hidden opacity-70" aria-hidden>
         <CornerFloral corner="tl" className="absolute left-0 top-0 h-auto w-[130px] sm:w-[170px]" />
         <CornerFloral corner="br" className="absolute bottom-0 right-0 h-auto w-[130px] sm:w-[170px]" />
       </div>
@@ -143,8 +153,8 @@ export default function EnvelopeOpener({ onOpen }: Props) {
           className="absolute left-1/2 top-1/2 z-20 -ml-[42px] -mt-[42px] flex h-[84px] w-[84px] items-center justify-center rounded-full shadow-xl"
           style={{
             background:
-              "radial-gradient(circle at 35% 30%, #c4607a 0%, #8c3a52 55%, #5c2438 100%)",
-            boxShadow: "0 8px 24px rgba(140,58,82,0.45), inset 0 2px 6px rgba(255,240,241,0.25)",
+              "radial-gradient(circle at 35% 30%, #6b1e2a 0%, #4a121c 55%, #300c12 100%)",
+            boxShadow: "0 8px 24px rgba(74,18,28,0.45), inset 0 2px 6px rgba(255,240,241,0.2)",
           }}
           initial={false}
           animate={stage === "idle" ? { scale: 1, opacity: 1 } : { scale: 0, opacity: 0 }}
@@ -165,7 +175,7 @@ export default function EnvelopeOpener({ onOpen }: Props) {
               transition={{ duration: 0.8, ease: easeOut }}
               onAnimationComplete={onOpen}
             >
-              <svg width="64" height="64" viewBox="0 0 24 24" fill="#c9967d">
+              <svg width="64" height="64" viewBox="0 0 24 24" fill="#e3cba6">
                 <path d="M12 21s-6.7-4.35-9.33-8.11C.55 10.05 1.62 6.5 4.5 6.5c1.8 0 3.42 1.1 4.1 2.4l1.4-2.4C10.2 4.4 10.6 4 12 4c1.4 0 1.8.4 2 .5" />
               </svg>
             </motion.div>

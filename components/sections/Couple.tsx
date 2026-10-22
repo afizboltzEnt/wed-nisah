@@ -37,7 +37,7 @@ export default function Couple() {
       <BorderFrame corners={["tr"]} />
       <StaggerGroup className="relative z-10 flex w-full flex-col items-center">
         <StaggerItem>
-          <p className="font-serif text-2xl text-burgundy-deep">
+          <p className="font-script text-4xl text-burgundy">
             Pasangan Yang Bakal Dinikahkan
           </p>
         </StaggerItem>

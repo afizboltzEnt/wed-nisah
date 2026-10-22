@@ -1,29 +1,33 @@
 @import "tailwindcss";
 
 @theme {
-  /* Rosas palette — soft rose/blush romance, rose-gold accents, warm sage leaves */
-  --color-ivory: #fdf3f0;
-  --color-cream: #fff8f4;
-  --color-paper: #fdeeea;
-  --color-burgundy: #c4607a;
-  --color-burgundy-deep: #8c3a52;
-  --color-rose: #e18fa0;
-  --color-dusty: #d9a0ac;
-  --color-sage: #7a9174;
-  --color-sage-light: #a8bfa0;
-  --color-gold: #c9967d;
-  --color-gold-deep: #a9765c;
-  --color-gold-soft: #f0d4c2;
+  /* Watercolour-stationery palette: ivory, deep burgundy, blush pink, sage,
+     with a muted antique-gold/brass accent for borders and dividers. */
+  --color-ivory: #fbf8f4;
+  --color-cream: #fdf9f5;
+  --color-paper: #f7f1ea;
+  --color-burgundy: #6b1e2a;
+  --color-burgundy-deep: #4a121c;
+  --color-rose: #f2d4d2;
+  --color-dusty: #d98a96;
+  --color-sage: #9aa77f;
+  --color-sage-light: #bfcba3;
+  --color-gold: #b08a5a;
+  --color-gold-deep: #8c6a3f;
+  --color-gold-soft: #e3cba6;
 
+  /* Script for decorative headings; serif for names/structural caps;
+     "display" repointed to Cormorant so body copy reads as a refined serif. */
+  --font-script: var(--font-great-vibes);
   --font-serif: var(--font-playfair);
-  --font-display: var(--font-montserrat);
+  --font-display: var(--font-cormorant);
   --font-cormorant: var(--font-cormorant);
 
   --animate-float: float 6s ease-in-out infinite;
   --animate-flutter: flutter 4s ease-in-out infinite;
   --animate-glow: glow 3s ease-in-out infinite;
 
-  --shadow-card: 0 20px 60px -20px rgba(140, 58, 82, 0.25);
+  --shadow-card: 0 20px 60px -20px rgba(74, 18, 28, 0.25);
 }
 
 @keyframes float {
@@ -61,31 +65,11 @@ html {
 }
 
 body {
-  background: radial-gradient(
-    120% 100% at 50% 0%,
-    #fbe4de 0%,
-    #f3d4ce 45%,
-    #e6bfb8 100%
-  );
+  background-color: var(--color-ivory);
   color: var(--color-burgundy-deep);
   font-family: var(--font-display);
   -webkit-tap-highlight-color: transparent;
   overflow-x: hidden;
-}
-
-/* The phone-width card that holds the whole experience, floating on the
-   body's backdrop on wider screens and filling the screen edge-to-edge
-   on an actual phone (where max-width never binds). */
-.phone-card {
-  background-color: var(--color-ivory);
-}
-
-@media (min-width: 480px) {
-  .phone-card {
-    margin-block: 1.5rem;
-    border-radius: 32px;
-    box-shadow: 0 40px 100px -30px rgba(140, 58, 82, 0.45);
-  }
 }
 
 ::selection {
@@ -93,7 +77,7 @@ body {
   color: var(--color-cream);
 }
 
-/* Paper texture via subtle SVG noise on the body background */
+/* Subtle paper grain texture on the whole page */
 body::before {
   content: "";
   position: fixed;
@@ -107,20 +91,20 @@ body::before {
 .bg-invite-gradient {
   background: radial-gradient(
     120% 120% at 50% 30%,
-    #fff8f4 0%,
-    #f3d9cd 55%,
-    #d9a88e 100%
+    #fdf9f5 0%,
+    #f2d4d2 55%,
+    #c9a0a8 100%
   );
 }
 
 .text-gold-foil {
   background: linear-gradient(
     100deg,
-    #a9765c 0%,
-    #c9967d 25%,
-    #f0d4c2 45%,
-    #c9967d 60%,
-    #a9765c 100%
+    #8c6a3f 0%,
+    #b08a5a 25%,
+    #e3cba6 45%,
+    #b08a5a 60%,
+    #8c6a3f 100%
   );
   background-size: 200% auto;
   -webkit-background-clip: text;

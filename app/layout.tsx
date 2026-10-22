@@ -3,6 +3,7 @@ import {
   Playfair_Display,
   Cormorant_Garamond,
   Montserrat,
+  Great_Vibes,
 } from "next/font/google";
 import "./globals.css";
 
@@ -10,6 +11,13 @@ const playfair = Playfair_Display({
   variable: "--font-playfair",
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
+  display: "swap",
+});
+
+const greatVibes = Great_Vibes({
+  variable: "--font-great-vibes",
+  subsets: ["latin"],
+  weight: "400",
   display: "swap",
 });
 
@@ -45,7 +53,7 @@ export default function RootLayout({
   return (
     <html
       lang="ms"
-      className={`${playfair.variable} ${cormorant.variable} ${montserrat.variable}`}
+      className={`${playfair.variable} ${cormorant.variable} ${montserrat.variable} ${greatVibes.variable}`}
     >
       <body>{children}</body>
     </html>

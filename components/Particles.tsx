@@ -14,9 +14,9 @@ type Particle = {
   twinkle: number;
 };
 
-const GOLD = "#e8c4ad";
-const GOLD_DIM = "#c9967d";
-const ROSE = "#e18fa0";
+const GOLD = "#e3cba6";
+const GOLD_DIM = "#b08a5a";
+const ROSE = "#d98a96";
 
 export default function Particles() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -34,12 +34,8 @@ export default function Particles() {
     ).matches;
     const isMobile = window.innerWidth < 640;
 
-    // Confined to the phone-card's width, not the full viewport — on desktop
-    // the card is narrower than the window, and particles should stay inside it.
-    const cardWidth = () => Math.min(window.innerWidth, 430);
-
     const spawn = () => {
-      const w = cardWidth();
+      const w = window.innerWidth;
       const h = window.innerHeight;
       const count = reduced ? 0 : isMobile ? 22 : 44;
       particles = Array.from({ length: count }, () => ({
@@ -57,7 +53,7 @@ export default function Particles() {
 
     const resize = () => {
       const dpr = Math.min(window.devicePixelRatio || 1, 2);
-      const w = cardWidth();
+      const w = window.innerWidth;
       const h = window.innerHeight;
       canvas.width = w * dpr;
       canvas.height = h * dpr;
@@ -71,7 +67,7 @@ export default function Particles() {
     const tick = (now: number) => {
       const dt = Math.min((now - last) / 16.67, 3);
       last = now;
-      const w = cardWidth();
+      const w = window.innerWidth;
       const h = window.innerHeight;
       ctx.clearRect(0, 0, w, h);
       for (const p of particles) {
@@ -113,7 +109,7 @@ export default function Particles() {
   return (
     <canvas
       ref={canvasRef}
-      className="pointer-events-none fixed left-1/2 top-0 z-0 -translate-x-1/2"
+      className="pointer-events-none fixed inset-0 z-0"
       aria-hidden
     />
   );

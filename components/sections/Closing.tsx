@@ -13,7 +13,7 @@ export default function Closing() {
           </div>
         </StaggerItem>
         <StaggerItem>
-          <p className="mt-2 font-serif text-2xl text-burgundy-deep">
+          <p className="mt-2 font-script text-4xl text-burgundy">
             Sekian, terima kasih
           </p>
         </StaggerItem>

@@ -11,11 +11,13 @@ import Bismillah from "./sections/Bismillah";
 import InvitationMessage from "./sections/InvitationMessage";
 import Couple from "./sections/Couple";
 import Parents from "./sections/Parents";
+import Countdown from "./sections/Countdown";
 import DateVenue from "./sections/DateVenue";
 import RsvpForm from "./sections/RsvpForm";
 import Doa from "./sections/Doa";
 import Closing from "./sections/Closing";
 import SectionDivider from "./floral/SectionDivider";
+import SideMargins from "./floral/SideMargins";
 
 export default function Invitation() {
   const [opened, setOpened] = useState(false);
@@ -33,41 +35,38 @@ export default function Invitation() {
 
   return (
     <MotionConfig reducedMotion="user">
-      {/* The whole experience lives in one fixed-width "phone card" — full width
-          on an actual phone, floating centered on the body's backdrop on wider
-          screens, like the reference site. Everything below (including the
-          envelope gate) is positioned relative to this card, not the viewport. */}
-      <div className="phone-card relative mx-auto min-h-[100svh] w-full max-w-[430px] overflow-x-hidden">
-        <Particles />
+      <Particles />
+      <SideMargins />
 
-        {/* inert while the gate is up: scroll is already locked above, but
-            without this a guest could still Tab/swipe into the RSVP form and
-            map links sitting behind the still-opaque overlay. */}
-        <div inert={!opened}>
-          <Cover opened={opened} />
-          <PageFrame>
-            <Bismillah />
-            <InvitationMessage />
-            <SectionDivider />
-            <Couple />
-            <SectionDivider />
-            <Parents />
-            <SectionDivider />
-            <DateVenue />
-            <SectionDivider />
-            <RsvpForm />
-            <SectionDivider />
-            <Doa />
-            <Closing />
-          </PageFrame>
-        </div>
-
-        {opened && <MusicPlayer />}
-
-        <AnimatePresence>
-          {!opened && <EnvelopeOpener onOpen={() => setOpened(true)} />}
-        </AnimatePresence>
+      {/* inert while the gate is up: scroll is already locked above, but
+          without this a guest could still Tab/swipe into the RSVP form and
+          map links sitting behind the still-opaque overlay. */}
+      <div inert={!opened}>
+        <Cover opened={opened} />
+        <PageFrame>
+          <Bismillah />
+          <InvitationMessage />
+          <SectionDivider />
+          <Couple />
+          <SectionDivider />
+          <Parents />
+          <SectionDivider />
+          <Countdown />
+          <SectionDivider />
+          <DateVenue />
+          <SectionDivider />
+          <RsvpForm />
+          <SectionDivider />
+          <Doa />
+          <Closing />
+        </PageFrame>
       </div>
+
+      {opened && <MusicPlayer />}
+
+      <AnimatePresence>
+        {!opened && <EnvelopeOpener onOpen={() => setOpened(true)} />}
+      </AnimatePresence>
     </MotionConfig>
   );
 }

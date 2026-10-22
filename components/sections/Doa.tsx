@@ -6,7 +6,7 @@ export default function Doa() {
     <section className="flex flex-col items-center py-10 text-center">
       <StaggerGroup className="flex flex-col items-center" stagger={0.25}>
         <StaggerItem variants={fadeIn}>
-          <p className="font-serif text-2xl text-burgundy-deep">Doa &amp; Kesyukuran</p>
+          <p className="font-script text-4xl text-burgundy">Doa &amp; Kesyukuran</p>
         </StaggerItem>
         <StaggerItem variants={fadeIn} className="mx-auto mt-5 max-w-sm">
           <p className="font-cormorant text-lg leading-relaxed text-sage">

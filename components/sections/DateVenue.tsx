@@ -1,96 +1,92 @@
-import { motion } from "motion/react";
+"use client";
+
 import { StaggerGroup, StaggerItem } from "../Stagger";
 import { WEDDING } from "@/lib/constants";
-import { scaleIn, drawLine } from "@/lib/motion";
+import { downloadICS } from "@/lib/ics";
+import { RoseBloom } from "../floral/Flowers";
 
-function MapLink({
-  href,
-  icon,
-  label,
-}: {
-  href: string;
-  icon: React.ReactNode;
-  label: string;
-}) {
+function CalendarIcon() {
   return (
-    <a
-      href={href}
-      target="_blank"
-      rel="noopener noreferrer"
-      className="flex flex-1 items-center justify-center gap-2 rounded-full border border-gold bg-cream/80 px-5 py-3 font-display text-xs font-medium uppercase tracking-[0.12em] text-gold-deep shadow-sm transition hover:bg-gold hover:text-cream active:scale-95"
-    >
-      {icon}
-      {label}
-    </a>
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
+      <rect x="3" y="5" width="18" height="16" rx="2" />
+      <path d="M8 3v4M16 3v4M3 10h18" strokeLinecap="round" />
+    </svg>
+  );
+}
+
+function ClockIcon() {
+  return (
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
+      <circle cx="12" cy="12" r="9" />
+      <path d="M12 7v5l3 2" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
   );
 }
 
 export default function DateVenue() {
   return (
-    <section className="flex flex-col items-center py-10 text-center">
+    <section className="relative flex flex-col items-center py-10 text-center" id="schedule">
       <StaggerGroup className="flex w-full flex-col items-center">
         <StaggerItem>
-          <p className="font-serif text-2xl text-burgundy-deep">Tarikh &amp; Masa</p>
+          <p className="font-script text-4xl text-burgundy">
+            Wedding Celebration
+          </p>
+          <p className="mt-1 font-display text-sm italic text-sage">
+            An afternoon of love in Kota Damansara
+          </p>
         </StaggerItem>
 
-        <StaggerItem
-          variants={scaleIn}
-          className="mt-6 w-full rounded-lg border border-gold/50 bg-cream/70 px-6 py-6 shadow-sm"
-        >
-          <p className="font-serif text-[2.2rem] leading-none text-gold-foil">
-            {WEDDING.dateNum}
-          </p>
-          <motion.span
-            variants={drawLine}
-            style={{ transformOrigin: "center" }}
-            className="mx-auto mt-3 block h-px w-16 bg-gold/70"
+        <StaggerItem className="relative mt-8 w-full max-w-sm">
+          <RoseBloom
+            size={44}
+            className="pointer-events-none absolute -right-3 -top-3 opacity-80"
           />
-          <p className="mt-3 font-serif text-xl text-burgundy-deep">
-            {WEDDING.dateLong}
-          </p>
-          <p className="mt-1 font-display text-[0.7rem] font-light uppercase tracking-[0.3em] text-sage-light">
-            {WEDDING.timeStart} — {WEDDING.time}
-          </p>
-        </StaggerItem>
+          <div className="relative rounded-2xl border border-gold/40 bg-paper/80 p-6 text-left shadow-card">
+            <div className="flex h-11 w-11 items-center justify-center rounded-full bg-rose text-burgundy-deep">
+              <CalendarIcon />
+            </div>
+            <p className="mt-4 font-display text-xs uppercase tracking-[0.2em] text-gold-deep">
+              {WEDDING.dateLong}
+            </p>
+            <h3 className="mt-1 font-serif text-xl text-burgundy-deep">
+              Walimatul Urus &amp; Persandingan
+            </h3>
+            <p className="mt-2 font-display text-sm leading-relaxed text-sage">
+              {WEDDING.venue}
+              <br />
+              {WEDDING.address}
+            </p>
+            <div className="mt-3 flex items-center gap-1.5 font-display text-sm text-burgundy">
+              <ClockIcon />
+              {WEDDING.timeStart} — {WEDDING.time}
+            </div>
 
-        <StaggerItem className="mt-8">
-          <p className="font-serif text-xl text-burgundy-deep">Majlis</p>
-          <p className="mt-2 font-display text-sm font-light uppercase tracking-[0.2em] text-sage">
-            Walimatul Urus &amp; Persandingan
-          </p>
-        </StaggerItem>
-
-        <StaggerItem
-          variants={scaleIn}
-          className="mt-4 w-full rounded-lg border border-gold/50 bg-cream/70 px-6 py-6 shadow-sm"
-        >
-          <p className="font-serif text-xl text-burgundy-deep">
-            {WEDDING.venue}
-          </p>
-          <p className="mx-auto mt-2 max-w-xs font-display text-xs font-light leading-relaxed tracking-[0.1em] text-sage">
-            {WEDDING.address}
-          </p>
-        </StaggerItem>
-
-        <StaggerItem className="mt-6 flex w-full gap-3">
-          <MapLink
-            href={WEDDING.mapsUrl}
-            label="Google Maps"
-            icon={
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7Zm0 9.5a2.5 2.5 0 0 1 0-5 2.5 2.5 0 0 1 0 5Z" />
-              </svg>
-            }
-          />
-          <MapLink
-            href={WEDDING.wazeUrl}
-            label="Waze"
-            icon={
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M12 2a10 10 0 0 0-9.6 7.1c-.3 1 0 2.2.7 3l8.4 8.4a1 1 0 0 0 1.4 0l.6-.6c1.6-1.7 3.3-3.4 3.9-5.9h2.3a1.6 1.6 0 0 0 1.6-2c-.4-1.6-1-3-2-4.4A10 10 0 0 0 12 2Zm-2.5 8.5a2 2 0 1 1 0-4 2 2 0 0 1 0 4Zm5 3.5a1 1 0 0 1-.7-.3l-5-5a1 1 0 0 1 1.4-1.4l5 5a1 1 0 0 1 0 1.4.9.9 0 0 1-.7.3Z" />
-              </svg>
-            }
-          />
+            <div className="mt-5 flex gap-3">
+              <a
+                href={WEDDING.mapsUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex-1 rounded-full border border-burgundy px-4 py-2.5 text-center font-display text-xs font-medium uppercase tracking-[0.1em] text-burgundy transition hover:bg-burgundy hover:text-cream"
+              >
+                View on Maps
+              </a>
+              <button
+                type="button"
+                onClick={() =>
+                  downloadICS({
+                    title: "Walimatul Urus Dani & Anisaq",
+                    description: `Majlis Perkahwinan — ${WEDDING.venue}`,
+                    location: WEDDING.address,
+                    startISO: WEDDING.targetDateISO,
+                    durationHours: 4,
+                  })
+                }
+                className="flex-1 rounded-full border border-burgundy px-4 py-2.5 text-center font-display text-xs font-medium uppercase tracking-[0.1em] text-burgundy transition hover:bg-burgundy hover:text-cream"
+              >
+                Add to Calendar
+              </button>
+            </div>
+          </div>
         </StaggerItem>
       </StaggerGroup>
     </section>

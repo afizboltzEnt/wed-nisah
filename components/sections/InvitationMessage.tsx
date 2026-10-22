@@ -7,7 +7,7 @@ export default function InvitationMessage() {
     <section className="flex flex-col items-center py-10 text-center">
       <StaggerGroup className="flex flex-col items-center">
         <StaggerItem>
-          <p className="font-serif text-xl text-burgundy">Assalamualaikum wbt</p>
+          <p className="font-script text-4xl text-burgundy">Assalamualaikum wbt</p>
         </StaggerItem>
         <StaggerItem>
           <p className="mt-5 max-w-xs font-display text-sm font-light leading-relaxed tracking-[0.06em] text-sage">
