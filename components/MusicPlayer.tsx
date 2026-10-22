@@ -23,7 +23,7 @@ export default function MusicPlayer() {
   }, []);
 
   return (
-    <div className="fixed bottom-5 right-5 z-50 flex flex-col items-end gap-2">
+    <div className="fixed bottom-5 right-[max(1.25rem,calc(50vw-195px))] z-50 flex flex-col items-end gap-2">
       <motion.button
         type="button"
         onClick={toggleMusic}

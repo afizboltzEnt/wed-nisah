@@ -1,10 +1,10 @@
 "use client";
 
-import Image from "next/image";
 import { motion } from "motion/react";
 import { StaggerItem } from "../Stagger";
 import { WEDDING } from "@/lib/constants";
-import { Leaf, Fern } from "../floral/Flowers";
+import { Leaf, Fern, CornerFloral } from "../floral/Flowers";
+import { Monogram } from "../Monogram";
 import { drawLine, scaleIn, staggerContainer } from "@/lib/motion";
 
 type Props = {
@@ -19,16 +19,14 @@ function EdgeStrip({ side }: { side: "top" | "bottom" }) {
   const flip = side === "bottom";
   return (
     <div
-      className={`pointer-events-none absolute left-[130px] right-[130px] flex items-center justify-between opacity-50 sm:left-[170px] sm:right-[170px] ${
+      className={`pointer-events-none absolute left-[150px] right-[150px] flex items-center justify-center gap-3 opacity-50 sm:left-[190px] sm:right-[190px] sm:gap-6 ${
         side === "top" ? "top-3" : "bottom-3"
       }`}
       aria-hidden
     >
-      <Fern size={30} flip={!flip} />
-      <Leaf size={20} flip={flip} />
-      <Fern size={26} flip={flip} />
-      <Leaf size={20} flip={!flip} />
-      <Fern size={30} flip={!flip} />
+      <Fern size={20} flip={!flip} />
+      <Leaf size={16} flip={flip} />
+      <Fern size={20} flip={flip} />
     </div>
   );
 }
@@ -46,38 +44,22 @@ export default function Cover({ opened }: Props) {
       />
       <div className="pointer-events-none absolute inset-[26px] rounded-[18px] border border-gold/40 sm:inset-10" />
 
-      {/* dense corners, all 4 edges framed like the reference card */}
-      <Image
-        src="/flowers/corner-tl.webp"
-        alt=""
-        width={580}
-        height={620}
-        priority
-        className="pointer-events-none absolute left-0 top-0 h-auto w-[170px] sm:w-[230px]"
+      {/* dense corners, all 4 edges framed — rose/peony SVG cluster instead of the PDF-specific raster set */}
+      <CornerFloral
+        corner="tl"
+        className="pointer-events-none absolute left-0 top-0 h-auto w-[150px] sm:w-[190px]"
       />
-      <Image
-        src="/flowers/corner-tr.webp"
-        alt=""
-        width={539}
-        height={480}
-        priority
-        className="pointer-events-none absolute right-0 top-0 h-auto w-[170px] sm:w-[230px]"
+      <CornerFloral
+        corner="tr"
+        className="pointer-events-none absolute right-0 top-0 h-auto w-[150px] sm:w-[190px]"
       />
-      <Image
-        src="/flowers/corner-bl.webp"
-        alt=""
-        width={560}
-        height={620}
-        priority
-        className="pointer-events-none absolute bottom-0 left-0 h-auto w-[170px] sm:w-[230px]"
+      <CornerFloral
+        corner="bl"
+        className="pointer-events-none absolute bottom-0 left-0 h-auto w-[150px] sm:w-[190px]"
       />
-      <Image
-        src="/flowers/corner-br.webp"
-        alt=""
-        width={540}
-        height={620}
-        priority
-        className="pointer-events-none absolute bottom-0 right-0 h-auto w-[170px] sm:w-[230px]"
+      <CornerFloral
+        corner="br"
+        className="pointer-events-none absolute bottom-0 right-0 h-auto w-[150px] sm:w-[190px]"
       />
       <EdgeStrip side="top" />
       <EdgeStrip side="bottom" />
@@ -89,14 +71,9 @@ export default function Cover({ opened }: Props) {
         animate={opened ? "show" : "hidden"}
       >
         <StaggerItem variants={scaleIn}>
-          <Image
-            src="/flowers/monogram.webp"
-            alt={`${WEDDING.groom.shortName} & ${WEDDING.bride.shortName}`}
-            width={363}
-            height={409}
-            className="h-auto w-[110px] animate-float"
-            priority
-          />
+          <div className="animate-float">
+            <Monogram size={110} />
+          </div>
         </StaggerItem>
 
         <StaggerItem>

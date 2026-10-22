@@ -42,7 +42,7 @@ export default function EnvelopeOpener({ onOpen }: Props) {
 
   return (
     <motion.div
-      className="bg-invite-gradient fixed inset-0 z-[100] flex flex-col items-center justify-center overflow-hidden px-6"
+      className="bg-invite-gradient fixed inset-0 z-[100] mx-auto flex max-w-[430px] flex-col items-center justify-center overflow-hidden px-6"
       exit={{ opacity: 0 }}
       transition={{ duration: 0.6, ease: easeInOut }}
     >
@@ -143,8 +143,8 @@ export default function EnvelopeOpener({ onOpen }: Props) {
           className="absolute left-1/2 top-1/2 z-20 -ml-[42px] -mt-[42px] flex h-[84px] w-[84px] items-center justify-center rounded-full shadow-xl"
           style={{
             background:
-              "radial-gradient(circle at 35% 30%, #8b2a3a 0%, #6b1d2f 55%, #4a1020 100%)",
-            boxShadow: "0 8px 24px rgba(107,29,47,0.45), inset 0 2px 6px rgba(255,240,241,0.25)",
+              "radial-gradient(circle at 35% 30%, #c4607a 0%, #8c3a52 55%, #5c2438 100%)",
+            boxShadow: "0 8px 24px rgba(140,58,82,0.45), inset 0 2px 6px rgba(255,240,241,0.25)",
           }}
           initial={false}
           animate={stage === "idle" ? { scale: 1, opacity: 1 } : { scale: 0, opacity: 0 }}
@@ -165,7 +165,7 @@ export default function EnvelopeOpener({ onOpen }: Props) {
               transition={{ duration: 0.8, ease: easeOut }}
               onAnimationComplete={onOpen}
             >
-              <svg width="64" height="64" viewBox="0 0 24 24" fill="#d4af37">
+              <svg width="64" height="64" viewBox="0 0 24 24" fill="#c9967d">
                 <path d="M12 21s-6.7-4.35-9.33-8.11C.55 10.05 1.62 6.5 4.5 6.5c1.8 0 3.42 1.1 4.1 2.4l1.4-2.4C10.2 4.4 10.6 4 12 4c1.4 0 1.8.4 2 .5" />
               </svg>
             </motion.div>
