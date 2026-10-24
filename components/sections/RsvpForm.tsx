@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { motion } from "motion/react";
 import { StaggerGroup, StaggerItem } from "../Stagger";
+import SectionDivider from "../floral/SectionDivider";
 import { supabase } from "@/lib/supabase";
 import type { RsvpInsert } from "@/lib/supabase";
 import { fadeUp, scaleIn, withStagger } from "@/lib/motion";
@@ -11,8 +12,8 @@ import { fadeUp, scaleIn, withStagger } from "@/lib/motion";
 // cascade together with this card's scroll-triggered reveal instead of on mount.
 const cardStagger = withStagger(scaleIn, 0.08);
 
-const inputCls =
-  "w-full rounded-lg border border-gold/40 bg-cream/70 px-4 py-3 font-display text-sm font-light text-burgundy-deep placeholder:text-sage-light/70 focus:border-gold focus:outline-none focus:ring-2 focus:ring-gold/30 transition";
+const heading =
+  "font-caps text-[0.95rem] font-normal uppercase tracking-[0.3em] text-ink";
 
 export default function RsvpForm() {
   const [name, setName] = useState("");
@@ -44,38 +45,34 @@ export default function RsvpForm() {
   };
 
   return (
-    <section className="flex flex-col items-center py-10 text-center" id="rsvp">
-      <StaggerGroup className="flex w-full flex-col items-center">
-        <StaggerItem>
-          <span className="rounded-full bg-burgundy px-4 py-1 font-display text-[0.65rem] font-medium uppercase tracking-[0.25em] text-gold-soft">
-            RSVP
-          </span>
-          <p className="mt-3 font-script text-4xl text-burgundy">Rsvp</p>
-          <p className="font-display text-sm italic text-sage">
-            We hope you can join us
-          </p>
-        </StaggerItem>
-        <StaggerItem>
-          <p className="mt-2 font-cormorant text-base italic text-sage">
-            Sila sahkan kehadiran anda sebelum&nbsp;
-            <span className="font-display text-[0.7rem] font-normal uppercase tracking-[0.2em] text-gold-deep not-italic">
-              20 Disember 2026
-            </span>
-          </p>
-        </StaggerItem>
+    <section
+      className="flex flex-col items-center gap-5 text-center"
+      id="rsvp"
+      aria-labelledby="rsvp-heading"
+    >
+      <h2 id="rsvp-heading" className={heading}>
+        RSVP
+      </h2>
+      <SectionDivider />
+      <p className="font-display-italic italic text-ink-2">
+        Sila sahkan kehadiran anda sebelum{" "}
+        <span className="not-italic text-[0.7rem] uppercase tracking-[0.2em] text-stationery-gold">
+          20 Disember 2026
+        </span>
+      </p>
 
-        <StaggerItem variants={cardStagger} className="mt-6 w-full">
+      <StaggerGroup className="flex w-full flex-col items-center">
+        <StaggerItem variants={cardStagger} className="w-full">
           {state === "done" ? (
             <motion.div
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
-              className="rounded-xl border border-gold/50 bg-cream/80 px-6 py-8"
+              className="event w-full"
             >
-              <div className="text-4xl">🌷</div>
-              <p className="mt-3 font-serif text-xl text-burgundy-deep">
+              <p className="font-display-italic text-xl text-ink">
                 Terima kasih, {name.trim()}!
               </p>
-              <p className="mt-2 font-display text-sm font-light text-sage">
+              <p className="text-sm text-ink-2">
                 Maklumat anda telah kami terima.{" "}
                 {attendance === "hadir"
                   ? "Alhamdulillah, selamat datang."
@@ -85,19 +82,20 @@ export default function RsvpForm() {
           ) : (
             <form
               onSubmit={submit}
-              className="space-y-4 rounded-xl border border-gold/40 bg-cream/60 p-6 text-left shadow-sm"
+              className="flex w-full flex-col gap-[22px] text-left"
             >
               {state === "error" && (
-                <p className="rounded-lg bg-rose/15 px-4 py-2 font-display text-sm text-burgundy">
+                <p className="rsvp-err">
                   Maaf, terdapat ralat. Sila cuba semula.
                 </p>
               )}
               <motion.div variants={fadeUp}>
-                <label className="mb-1.5 block font-display text-[0.7rem] font-light uppercase tracking-[0.25em] text-sage">
+                <label className="rsvp-field-label" htmlFor="rsvp-name">
                   Nama anda
                 </label>
                 <input
-                  className={inputCls}
+                  id="rsvp-name"
+                  className="rsvp-input"
                   value={name}
                   onChange={(e) => setName(e.target.value)}
                   placeholder="Nama penuh"
@@ -106,65 +104,57 @@ export default function RsvpForm() {
               </motion.div>
 
               <motion.div variants={fadeUp}>
-                <label className="mb-1.5 block font-display text-[0.7rem] font-light uppercase tracking-[0.25em] text-sage">
-                  Kehadiran
-                </label>
-                <div className="grid grid-cols-2 gap-3">
-                  {([
-                    ["hadir", "Insya-Allah, Hadir"],
-                    ["tidak", "Maaf, Tidak Dapat Hadir"],
-                  ] as const).map(([val, label]) => (
-                    <motion.button
+                <span className="rsvp-field-label">Kehadiran</span>
+                <div className="flex flex-wrap gap-2.5">
+                  {(
+                    [
+                      ["hadir", "Insya-Allah, Hadir"],
+                      ["tidak", "Maaf, Tidak Dapat Hadir"],
+                    ] as const
+                  ).map(([val, label]) => (
+                    <button
                       key={val}
                       type="button"
                       onClick={() => setAttendance(val)}
-                      whileTap={{ scale: 0.95 }}
-                      className={`rounded-lg border px-3 py-3 font-display text-xs font-normal uppercase tracking-[0.12em] transition-[background-color,border-color,color,box-shadow] duration-200 ${
-                        attendance === val
-                          ? "border-gold bg-burgundy text-gold-soft shadow"
-                          : "border-gold/40 bg-cream/80 text-sage hover:border-gold"
-                      }`}
+                      data-selected={attendance === val}
+                      className="rsvp-choice"
                     >
                       {label}
-                    </motion.button>
+                    </button>
                   ))}
                 </div>
               </motion.div>
 
-              <motion.div variants={fadeUp} className="grid grid-cols-2 gap-3">
+              <motion.div variants={fadeUp} className="grid grid-cols-2 gap-5">
                 <div>
-                  <label className="mb-1.5 block font-display text-[0.7rem] font-light uppercase tracking-[0.25em] text-sage">
-                    Bilangan tetamu
-                  </label>
-                  <div className="flex items-center justify-between rounded-lg border border-gold/40 bg-cream/70 px-2 py-1.5">
+                  <span className="rsvp-field-label">Bilangan tetamu</span>
+                  <div className="rsvp-stepper">
                     <button
                       type="button"
                       aria-label="Kurangkan bilangan tetamu"
                       onClick={() => setGuestCount((n) => Math.max(1, n - 1))}
-                      className="flex h-8 w-8 items-center justify-center rounded-full font-display text-lg text-burgundy transition hover:bg-gold/20"
                     >
                       −
                     </button>
-                    <span className="font-serif text-lg text-burgundy-deep">
-                      {guestCount}
-                    </span>
+                    <output>{guestCount}</output>
                     <button
                       type="button"
                       aria-label="Tambah bilangan tetamu"
                       onClick={() => setGuestCount((n) => Math.min(20, n + 1))}
-                      className="flex h-8 w-8 items-center justify-center rounded-full font-display text-lg text-burgundy transition hover:bg-gold/20"
                     >
                       +
                     </button>
                   </div>
                 </div>
                 <div>
-                  <label className="mb-1.5 block font-display text-[0.7rem] font-light uppercase tracking-[0.25em] text-sage">
-                    No. telefon <span className="text-sage-light/60">(opsional)</span>
+                  <label className="rsvp-field-label" htmlFor="rsvp-phone">
+                    No. telefon{" "}
+                    <span className="text-ink-2/60">(opsional)</span>
                   </label>
                   <input
+                    id="rsvp-phone"
                     type="tel"
-                    className={inputCls}
+                    className="rsvp-input"
                     value={phone}
                     onChange={(e) => setPhone(e.target.value)}
                     placeholder="012-3456789"
@@ -173,11 +163,13 @@ export default function RsvpForm() {
               </motion.div>
 
               <motion.div variants={fadeUp}>
-                <label className="mb-1.5 block font-display text-[0.7rem] font-light uppercase tracking-[0.25em] text-sage">
-                  Ucapan &amp; doa <span className="text-sage-light/60">(opsional)</span>
+                <label className="rsvp-field-label" htmlFor="rsvp-message">
+                  Ucapan &amp; doa{" "}
+                  <span className="text-ink-2/60">(opsional)</span>
                 </label>
                 <textarea
-                  className={inputCls}
+                  id="rsvp-message"
+                  className="rsvp-input"
                   rows={3}
                   value={message}
                   onChange={(e) => setMessage(e.target.value)}
@@ -189,9 +181,9 @@ export default function RsvpForm() {
                 variants={fadeUp}
                 type="submit"
                 disabled={state === "loading"}
-                className="w-full rounded-full bg-burgundy-deep py-3.5 font-display text-sm font-light uppercase tracking-[0.2em] text-gold-soft shadow-md transition hover:bg-burgundy active:scale-[0.98] disabled:opacity-60"
+                className="btn solid self-center px-7 py-[15px] disabled:opacity-60"
               >
-                {state === "loading" ? "Menghantar…" : "Hantar & Sahkan ✦"}
+                {state === "loading" ? "Menghantar…" : "Hantar & Sahkan"}
               </motion.button>
             </form>
           )}

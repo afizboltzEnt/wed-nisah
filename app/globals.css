@@ -1,121 +1,687 @@
 @import "tailwindcss";
 
 @theme {
-  /* Watercolour-stationery palette: ivory, deep burgundy, blush pink, sage,
+    /* Watercolour-stationery palette: ivory, deep burgundy, blush pink, sage,
      with a muted antique-gold/brass accent for borders and dividers. */
-  --color-ivory: #fbf8f4;
-  --color-cream: #fdf9f5;
-  --color-paper: #f7f1ea;
-  --color-burgundy: #6b1e2a;
-  --color-burgundy-deep: #4a121c;
-  --color-rose: #f2d4d2;
-  --color-dusty: #d98a96;
-  --color-sage: #9aa77f;
-  --color-sage-light: #bfcba3;
-  --color-gold: #b08a5a;
-  --color-gold-deep: #8c6a3f;
-  --color-gold-soft: #e3cba6;
+    --color-ivory: #fbf8f4;
+    --color-cream: #fdf9f5;
+    --color-paper: #f1ebe0;
+    --color-burgundy: #6b1e2a;
+    --color-burgundy-deep: #4a121c;
+    --color-rose: #f2d4d2;
+    --color-dusty: #d98a96;
+    --color-sage: #9aa77f;
+    --color-sage-light: #bfcba3;
+    --color-gold: #b08a5a;
+    --color-gold-deep: #8c6a3f;
+    --color-gold-soft: #e3cba6;
 
-  /* Script for decorative headings; serif for names/structural caps;
+    /* Script for decorative headings; serif for names/structural caps;
      "display" repointed to Cormorant so body copy reads as a refined serif. */
-  --font-script: var(--font-great-vibes);
-  --font-serif: var(--font-playfair);
-  --font-display: var(--font-cormorant);
-  --font-cormorant: var(--font-cormorant);
+    --font-script: var(--font-great-vibes);
+    --font-serif: var(--font-playfair);
+    --font-display: var(--font-cormorant);
+    --font-cormorant: var(--font-cormorant);
 
-  --animate-float: float 6s ease-in-out infinite;
-  --animate-flutter: flutter 4s ease-in-out infinite;
-  --animate-glow: glow 3s ease-in-out infinite;
+    --animate-float: float 6s ease-in-out infinite;
+    --animate-flutter: flutter 4s ease-in-out infinite;
+    --animate-glow: glow 3s ease-in-out infinite;
 
-  --shadow-card: 0 20px 60px -20px rgba(74, 18, 28, 0.25);
+    --shadow-card: 0 20px 60px -20px rgba(74, 18, 28, 0.25);
+
+    /* ---------- Watercolour-stationery mockup palette (new) ---------- */
+    --color-ink: #442b16;
+    --color-ink-2: #604835;
+    --color-stationery-gold: #9f703b;
+    --color-wine: #6b1a24;
+    --color-rule: #d9cbb5;
+    --color-paper-2: #e9e0d1;
+
+    --font-caps: var(--font-baskerville);
+    --font-display-italic: var(--font-playfair);
+    --font-arabic: var(--font-amiri);
 }
 
 @keyframes float {
-  0%,
-  100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-12px);
-  }
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-12px);
+    }
 }
 
 @keyframes flutter {
-  0%,
-  100% {
-    transform: translateY(0) rotate(-2deg);
-  }
-  50% {
-    transform: translateY(-8px) rotate(3deg);
-  }
+    0%,
+    100% {
+        transform: translateY(0) rotate(-2deg);
+    }
+    50% {
+        transform: translateY(-8px) rotate(3deg);
+    }
 }
 
 @keyframes glow {
-  0%,
-  100% {
-    opacity: 0.7;
-  }
-  50% {
-    opacity: 1;
-  }
+    0%,
+    100% {
+        opacity: 0.7;
+    }
+    50% {
+        opacity: 1;
+    }
 }
 
 html {
-  scroll-behavior: smooth;
+    scroll-behavior: smooth;
 }
 
 body {
-  background-color: var(--color-ivory);
-  color: var(--color-burgundy-deep);
-  font-family: var(--font-display);
-  -webkit-tap-highlight-color: transparent;
-  overflow-x: hidden;
+    background-color: var(--color-paper);
+    color: var(--color-ink);
+    font-family: var(--font-caps);
+    -webkit-tap-highlight-color: transparent;
+    overflow-x: hidden;
 }
 
 ::selection {
-  background-color: var(--color-gold);
-  color: var(--color-cream);
+    background-color: var(--color-gold);
+    color: var(--color-cream);
 }
 
 /* Subtle paper grain texture on the whole page */
 body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  z-index: 0;
-  pointer-events: none;
-  opacity: 0.035;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    opacity: 0.035;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 
 .bg-invite-gradient {
-  background: radial-gradient(
-    120% 120% at 50% 30%,
-    #fdf9f5 0%,
-    #f2d4d2 55%,
-    #c9a0a8 100%
-  );
+    background: radial-gradient(
+        120% 120% at 50% 30%,
+        #fdf9f5 0%,
+        #f2d4d2 55%,
+        #c9a0a8 100%
+    );
 }
 
 .text-gold-foil {
-  background: linear-gradient(
-    100deg,
-    #8c6a3f 0%,
-    #b08a5a 25%,
-    #e3cba6 45%,
-    #b08a5a 60%,
-    #8c6a3f 100%
-  );
-  background-size: 200% auto;
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-  color: transparent;
-  animation: shimmer 5s linear infinite;
+    background: linear-gradient(
+        100deg,
+        #8c6a3f 0%,
+        #b08a5a 25%,
+        #e3cba6 45%,
+        #b08a5a 60%,
+        #8c6a3f 100%
+    );
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+    animation: shimmer 5s linear infinite;
 }
 
 @keyframes shimmer {
-  to {
-    background-position: -200% center;
-  }
+    to {
+        background-position: -200% center;
+    }
+}
+
+/* ---------- Sprig divider (minimal, replaces the old florid SectionDivider) ---------- */
+.sprig {
+    width: 150px;
+    height: 20px;
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 150 20'%3E%3Cpath d='M0 10h56M94 10h56' stroke='%239F703B' stroke-width='.7'/%3E%3Cpath d='M64 10h22' stroke='%239F703B' stroke-width='.7'/%3E%3Cpath d='M75 10c-3-2-4-5-3-8 3 1 4 5 3 8Zm0 0c3 2 4 5 3 8-3-1-4-5-3-8Z' fill='%239F703B'/%3E%3Cpath d='M68 10c-2-2-2-4-1-6 2 1 2 4 1 6Zm14 0c2 2 2 4 1 6-2-1-2-4-1-6Z' fill='%239F703B' fill-opacity='.7'/%3E%3C/svg%3E")
+        center/contain no-repeat;
+}
+
+/* ---------- Hero invitation card (fluid sizing via container queries) ---------- */
+.hero {
+    --h: max(100vh, 540px);
+    position: relative;
+    width: 100vw;
+    margin-left: calc(50% - 50vw);
+    height: var(--h);
+    overflow: hidden;
+}
+@supports (height: 100svh) {
+    .hero {
+        --h: max(100svh, 540px);
+    }
+}
+.inv {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    height: var(--h);
+    width: calc(var(--h) * 5 / 7);
+    container-type: inline-size;
+    background-color: var(--color-paper);
+}
+@media (min-aspect-ratio: 5/7) {
+    .inv {
+        -webkit-mask-image: linear-gradient(
+            90deg,
+            transparent,
+            #000 5%,
+            #000 95%,
+            transparent
+        );
+        mask-image: linear-gradient(
+            90deg,
+            transparent,
+            #000 5%,
+            #000 95%,
+            transparent
+        );
+    }
+}
+.cue {
+    position: absolute;
+    left: 50%;
+    bottom: calc(18px + env(safe-area-inset-bottom, 0px));
+    transform: translateX(-50%);
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+    padding: 8px 16px 6px;
+    border-radius: 999px;
+    background: rgba(241, 235, 224, 0.82);
+    -webkit-backdrop-filter: blur(4px);
+    backdrop-filter: blur(4px);
+    font-size: 0.62rem;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--color-ink);
+    text-decoration: none;
+    white-space: nowrap;
+}
+.cue::after {
+    content: "";
+    width: 7px;
+    height: 7px;
+    border-right: 1px solid currentColor;
+    border-bottom: 1px solid currentColor;
+    transform: rotate(45deg);
+    margin-top: 2px;
+}
+@media (prefers-reduced-motion: no-preference) {
+    .cue {
+        animation: bob 2.4s ease-in-out 1.6s infinite;
+    }
+    @keyframes bob {
+        0%,
+        100% {
+            transform: translate(-50%, 0);
+        }
+        50% {
+            transform: translate(-50%, 5px);
+        }
+    }
+}
+.inv-text {
+    position: absolute;
+    inset: 18.4% 0 0 0;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.inv .kicker {
+    font-size: max(9px, 2.75cqw);
+    letter-spacing: 0.14em;
+    line-height: 1.35;
+    color: var(--color-ink);
+    text-transform: uppercase;
+}
+.inv .mono {
+    width: 27cqw;
+    margin-top: 3.4cqw;
+    aspect-ratio: 202 / 224;
+}
+.inv .nm {
+    font-family: var(--font-caps);
+    font-weight: 400;
+    text-transform: uppercase;
+    font-size: max(15px, 6.2cqw);
+    letter-spacing: 0.24em;
+    padding-left: 0.24em;
+    line-height: 1.1;
+    color: var(--color-ink);
+    margin: 0;
+}
+.inv .nm.first {
+    margin-top: 1.6cqw;
+}
+.inv .amp-row {
+    display: flex;
+    align-items: center;
+    gap: 2.4cqw;
+    margin: 0.6cqw 0;
+}
+.inv .amp-row::before,
+.inv .amp-row::after {
+    content: "";
+    width: 11.5cqw;
+    height: 1px;
+    background: var(--color-stationery-gold);
+    opacity: 0.7;
+}
+.inv .amp {
+    font-family: var(--font-display-italic);
+    font-style: italic;
+    color: var(--color-stationery-gold);
+    font-size: max(13px, 4.4cqw);
+    line-height: 1;
+}
+.inv .date {
+    margin-top: 4.2cqw;
+    font-size: max(11px, 3.2cqw);
+    letter-spacing: 0.12em;
+    color: var(--color-ink);
+}
+.inv .venue {
+    margin-top: 3.2cqw;
+    font-style: italic;
+    font-size: max(11px, 2.45cqw);
+    line-height: 1.6;
+    color: var(--color-ink-2);
+    max-width: 56cqw;
+}
+
+/* ---------- Opening gate: two card doors with a wax seal ---------- */
+.gate {
+    --h: 100vh;
+    perspective: 1800px;
+    -webkit-tap-highlight-color: transparent;
+    background: none;
+    border: 0;
+    padding: 0;
+    margin: 0;
+    display: block;
+}
+@supports (height: 100svh) {
+    .gate {
+        --h: 100svh;
+    }
+}
+.door {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 50.5%;
+    background-color: var(--color-paper-2);
+    background-image:
+        linear-gradient(rgba(233, 224, 209, 0.35), rgba(233, 224, 209, 0.35)),
+        url("/invitation/frame.webp");
+    background-size:
+        100% 100%,
+        calc(var(--h) * 5 / 7) var(--h);
+    background-repeat: no-repeat;
+    backface-visibility: hidden;
+    will-change: transform;
+}
+.door.l {
+    left: 0;
+    transform-origin: left center;
+    background-position:
+        0 0,
+        calc(50vw - var(--h) * 5 / 14) 0;
+    box-shadow: inset -1px 0 0 rgba(159, 112, 59, 0.45);
+}
+.door.r {
+    right: 0;
+    transform-origin: right center;
+    background-position:
+        0 0,
+        calc(var(--h) * -5 / 14 + 0.5vw) 0;
+    box-shadow: inset 1px 0 0 rgba(159, 112, 59, 0.45);
+}
+.gate-face {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    text-align: center;
+    padding-inline: 24px;
+}
+.gate-face .k {
+    font-size: 0.66rem;
+    letter-spacing: 0.3em;
+    padding-left: 0.3em;
+    text-transform: uppercase;
+    color: var(--color-ink);
+}
+.gate-face .n {
+    font-family: var(--font-display-italic);
+    font-style: italic;
+    font-size: clamp(1.9rem, 8vw, 2.6rem);
+    line-height: 1.1;
+    color: var(--color-wine);
+}
+.seal {
+    width: 118px;
+    height: 118px;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    position: relative;
+    margin-block: 8px;
+    background: radial-gradient(
+        circle at 35% 30%,
+        #8e2a36,
+        #6b1a24 55%,
+        #4a0f18
+    );
+    box-shadow:
+        0 6px 18px rgba(74, 15, 24, 0.35),
+        inset 0 0 0 5px rgba(0, 0, 0, 0.12),
+        inset 0 0 0 7px rgba(159, 112, 59, 0.55);
+}
+.gate-face .tap {
+    font-size: 0.62rem;
+    letter-spacing: 0.3em;
+    padding-left: 0.3em;
+    text-transform: uppercase;
+    color: var(--color-ink-2);
+}
+@media (prefers-reduced-motion: no-preference) {
+    .seal {
+        animation: gate-pulse 2.2s ease-in-out infinite;
+    }
+    @keyframes gate-pulse {
+        0%,
+        100% {
+            transform: scale(1);
+        }
+        50% {
+            transform: scale(1.04);
+        }
+    }
+}
+
+/* ---------- Shared flat button (Majlis / RSVP submit / Hubungi) ----------
+   Scoped as a plain custom class (never a bare `button`/`a` selector) so it
+   never touches app/admin/page.tsx's or OpeningGate.tsx's own buttons. */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 11px 20px;
+    border: 1px solid var(--color-ink);
+    border-radius: 0;
+    color: var(--color-ink);
+    text-decoration: none;
+    font: 400 0.66rem/1 var(--font-caps);
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    background: transparent;
+    cursor: pointer;
+    transition:
+        background 0.25s,
+        color 0.25s;
+}
+.btn.solid,
+.btn:hover {
+    background: var(--color-ink);
+    color: var(--color-paper);
+}
+.btn[aria-disabled="true"] {
+    opacity: 0.4;
+    pointer-events: none;
+}
+.btn-sm {
+    padding: 8px 12px;
+    font-size: 0.58rem;
+}
+
+/* ---------- Majlis event box ---------- */
+.event {
+    position: relative;
+    width: 100%;
+    padding: 30px 20px;
+    border: 1px solid var(--color-rule);
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+}
+.event::before {
+    content: "";
+    position: absolute;
+    inset: 5px;
+    border: 1px solid var(--color-rule);
+    pointer-events: none;
+}
+.ev-date {
+    font-family: var(--font-display-italic);
+    font-size: 1.5rem;
+    color: var(--color-ink);
+}
+.ev-time {
+    font-style: italic;
+    color: var(--color-ink-2);
+}
+.ev-venue {
+    font-size: 1.05rem;
+}
+.addr {
+    color: var(--color-ink-2);
+    font-size: 0.9rem;
+    max-width: 36ch;
+    margin: 4px auto 0;
+}
+
+/* ---------- Countdown ---------- */
+.countdown {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    width: 100%;
+    max-width: 400px;
+}
+.unit {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+}
+.unit + .unit {
+    border-left: 1px solid var(--color-rule);
+}
+.unit b {
+    font-family: var(--font-display-italic);
+    font-weight: 400;
+    font-size: 2.3rem;
+    line-height: 1.1;
+    font-variant-numeric: tabular-nums lining-nums;
+    color: var(--color-ink);
+}
+.unit span {
+    font-size: 0.6rem;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--color-stationery-gold);
+}
+@media (max-width: 520px) {
+    .unit b {
+        font-size: 1.8rem;
+    }
+}
+
+/* ---------- Aturcara (programme) ---------- */
+.tag {
+    font-size: 0.6rem;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--color-ink-2);
+    border: 1px solid var(--color-rule);
+    padding: 4px 10px;
+}
+.prog {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    max-width: 380px;
+    display: flex;
+    flex-direction: column;
+}
+.prog li {
+    display: grid;
+    grid-template-columns: 110px 1fr;
+    gap: 14px;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--color-rule);
+    text-align: left;
+}
+.prog li:last-child {
+    border-bottom: 0;
+}
+.prog time {
+    font-family: var(--font-display-italic);
+    font-style: italic;
+    color: var(--color-stationery-gold);
+    font-variant-numeric: lining-nums;
+}
+@media (max-width: 520px) {
+    .prog li {
+        grid-template-columns: 96px 1fr;
+    }
+}
+
+/* ---------- RSVP form fields (scoped classes only — never bare `form`/
+   `input`/`select`/`textarea` selectors, which would also restyle
+   app/admin/page.tsx's login form) ---------- */
+.rsvp-field-label {
+    display: block;
+    font-size: 0.66rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--color-stationery-gold);
+    margin-bottom: 6px;
+}
+.rsvp-input {
+    width: 100%;
+    font: inherit;
+    font-size: 1rem;
+    color: var(--color-ink);
+    background: transparent;
+    border: 0;
+    border-bottom: 1px solid var(--color-rule);
+    border-radius: 0;
+    padding: 8px 2px;
+}
+.rsvp-input::placeholder {
+    color: #a99682;
+    font-style: italic;
+}
+textarea.rsvp-input {
+    min-height: 84px;
+    resize: vertical;
+}
+.rsvp-choice {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    border: 1px solid var(--color-rule);
+    padding: 8px 14px;
+    cursor: pointer;
+    font-size: 0.92rem;
+    background: transparent;
+    color: var(--color-ink);
+}
+.rsvp-choice[data-selected="true"] {
+    border-color: var(--color-ink);
+    background: var(--color-paper-2);
+}
+.rsvp-stepper {
+    display: flex;
+    align-items: center;
+    width: max-content;
+    border: 1px solid var(--color-rule);
+}
+.rsvp-stepper button {
+    width: 44px;
+    height: 42px;
+    background: transparent;
+    border: 0;
+    color: var(--color-ink);
+    font-size: 1.3rem;
+    cursor: pointer;
+}
+.rsvp-stepper output {
+    min-width: 40px;
+    text-align: center;
+    font-variant-numeric: tabular-nums;
+}
+.rsvp-err {
+    color: var(--color-wine);
+    font-style: italic;
+}
+.rsvp-note {
+    font-size: 0.85rem;
+    color: var(--color-ink-2);
+    text-align: center;
+    font-style: italic;
+}
+
+/* ---------- Hubungi (contacts) ---------- */
+.contacts {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 28px;
+    width: 100%;
+}
+.side {
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+.person {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+}
+.person .who {
+    font-family: var(--font-display-italic);
+    font-size: 1.1rem;
+}
+.person .num {
+    letter-spacing: 0.08em;
+    font-variant-numeric: tabular-nums;
+    user-select: all;
+    color: var(--color-ink-2);
+}
+.person .row {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 6px;
+}
+@media (max-width: 520px) {
+    .contacts {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ---------- Closing ---------- */
+.closing-sign {
+    font-family: var(--font-display-italic);
+    font-style: italic;
+    font-size: 2rem;
+    color: var(--color-wine);
 }

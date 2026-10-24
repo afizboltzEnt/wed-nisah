@@ -2,8 +2,9 @@ import type { Metadata } from "next";
 import {
   Playfair_Display,
   Cormorant_Garamond,
-  Montserrat,
   Great_Vibes,
+  Libre_Baskerville,
+  Amiri,
 } from "next/font/google";
 import "./globals.css";
 
@@ -11,6 +12,7 @@ const playfair = Playfair_Display({
   variable: "--font-playfair",
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
+  style: ["normal", "italic"],
   display: "swap",
 });
 
@@ -28,10 +30,18 @@ const cormorant = Cormorant_Garamond({
   display: "swap",
 });
 
-const montserrat = Montserrat({
-  variable: "--font-montserrat",
+const baskerville = Libre_Baskerville({
+  variable: "--font-baskerville",
   subsets: ["latin"],
-  weight: ["300", "400", "500"],
+  weight: ["400", "700"],
+  style: ["normal", "italic"],
+  display: "swap",
+});
+
+const amiri = Amiri({
+  variable: "--font-amiri",
+  subsets: ["arabic"],
+  weight: "400",
   display: "swap",
 });
 
@@ -53,7 +63,7 @@ export default function RootLayout({
   return (
     <html
       lang="ms"
-      className={`${playfair.variable} ${cormorant.variable} ${montserrat.variable} ${greatVibes.variable}`}
+      className={`${playfair.variable} ${cormorant.variable} ${greatVibes.variable} ${baskerville.variable} ${amiri.variable}`}
     >
       <body>{children}</body>
     </html>
