@@ -149,7 +149,7 @@ export default function RsvpForm() {
                 <div>
                   <label className="rsvp-field-label" htmlFor="rsvp-phone">
                     No. telefon{" "}
-                    <span className="text-ink-2/60">(opsional)</span>
+                    <span className="text-ink-2/60">(optional)</span>
                   </label>
                   <input
                     id="rsvp-phone"
@@ -165,7 +165,7 @@ export default function RsvpForm() {
               <motion.div variants={fadeUp}>
                 <label className="rsvp-field-label" htmlFor="rsvp-message">
                   Ucapan &amp; doa{" "}
-                  <span className="text-ink-2/60">(opsional)</span>
+                  <span className="text-ink-2/60">(optional)</span>
                 </label>
                 <textarea
                   id="rsvp-message"
