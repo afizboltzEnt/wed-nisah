@@ -25,10 +25,10 @@ export default function Doa() {
             Hadiah bolehlah dihulurkan menerusi:
           </p>
           <p className="text-sm text-ink-2">
-            <span className="font-medium">CIMB</span>
+            <span className="font-medium">GXBank</span>
             <br />
             <span className="font-display-italic text-xl tracking-[0.2em] text-ink">
-              8800 4766 5599
+              8888 0138 6668 6
             </span>
             <br />
             <span className="text-xs text-ink-2/70">
