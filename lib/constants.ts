@@ -40,4 +40,4 @@ export const WEDDING = {
 
 export const GUEST_NAME = "Tuan/Puan/Ahli Keluarga Yang Dikasihi";
 
-export const AUDIO_SRC = "/audio/background.wav";
+export const AUDIO_SRC = "/audio/background.mp3";
