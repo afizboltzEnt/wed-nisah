@@ -1,26 +1,22 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useSyncExternalStore } from "react";
 import { motion } from "motion/react";
 import {
+  isMusicMuted,
   isMusicPlaying,
   musicSubscribe,
   toggleMusic,
   getAudioElement,
 } from "@/lib/audio";
 
-export default function MusicPlayer() {
-  const [playing, setPlaying] = useState(false);
-  const [muted, setMuted] = useState(false);
+const serverSnapshot = () => false;
 
-  useEffect(() => {
-    const unsub = musicSubscribe(() => {
-      const audio = getAudioElement();
-      setPlaying(isMusicPlaying());
-      setMuted(audio.muted);
-    });
-    return unsub;
-  }, []);
+export default function MusicPlayer() {
+  // Read straight from the shared audio element: the opening gate starts
+  // playback before this button mounts, so local state would start stale.
+  const playing = useSyncExternalStore(musicSubscribe, isMusicPlaying, serverSnapshot);
+  const muted = useSyncExternalStore(musicSubscribe, isMusicMuted, serverSnapshot);
 
   return (
     <div className="fixed bottom-5 right-5 z-50 flex flex-col items-end gap-2">
@@ -60,7 +56,6 @@ export default function MusicPlayer() {
         onClick={() => {
           const audio = getAudioElement();
           audio.muted = !audio.muted;
-          setMuted(audio.muted);
         }}
         aria-label={muted ? "Unmute" : "Mute"}
         className="flex h-8 w-8 items-center justify-center rounded-full bg-paper/90 text-sage shadow ring-1 ring-gold/40 transition hover:text-burgundy"

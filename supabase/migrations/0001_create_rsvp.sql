@@ -1,6 +1,6 @@
 -- E-Wedding: Dani & Anisah RSVP table
 -- Run this in the source editor of the WEDDING Supabase project:
---   https://supabase.com/dashboard/project/zbtozerufklismpxjvgj/sql/new
+--   https://supabase.com/dashboard/project/cmnyonlekledwxnocizh/sql/new
 
 create table if not exists public.rsvp (
   id bigint generated always as identity primary key,

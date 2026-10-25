@@ -1,7 +1,7 @@
 import { AUDIO_SRC } from "./constants";
 
 let audioInstance: HTMLAudioElement | null = null;
-let listeners = new Set<() => void>();
+const listeners = new Set<() => void>();
 
 function getAudio(): HTMLAudioElement {
   if (!audioInstance) {
@@ -9,8 +9,11 @@ function getAudio(): HTMLAudioElement {
     audioInstance.loop = true;
     audioInstance.preload = "auto";
     audioInstance.volume = 0.55;
-    audioInstance.addEventListener("ended", () => emit());
-    audioInstance.addEventListener("pause", () => emit());
+    // Media events are the source of truth, so every subscriber stays in sync
+    // no matter who started playback (gate, button, or the browser itself).
+    for (const event of ["play", "pause", "ended", "volumechange"]) {
+      audioInstance.addEventListener(event, emit);
+    }
   }
   return audioInstance;
 }
@@ -32,11 +35,14 @@ export function isMusicPlaying(): boolean {
   return !!audioInstance && !audioInstance.paused && !audioInstance.ended;
 }
 
+export function isMusicMuted(): boolean {
+  return !!audioInstance && audioInstance.muted;
+}
+
 export async function playMusic(): Promise<void> {
   const audio = getAudio();
   try {
     await audio.play();
-    emit();
   } catch {
     // Browsers may still block; retrying on next user gesture happens naturally.
   }
@@ -44,7 +50,6 @@ export async function playMusic(): Promise<void> {
 
 export function pauseMusic(): void {
   getAudio().pause();
-  emit();
 }
 
 export function toggleMusic(): void {

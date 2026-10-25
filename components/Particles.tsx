@@ -14,9 +14,9 @@ type Particle = {
   twinkle: number;
 };
 
-const GOLD = "#e6c978";
-const GOLD_DIM = "#c9a227";
-const ROSE = "#d9737e";
+const GOLD = "#e3cba6";
+const GOLD_DIM = "#b08a5a";
+const ROSE = "#d98a96";
 
 export default function Particles() {
   const canvasRef = useRef<HTMLCanvasElement>(null);

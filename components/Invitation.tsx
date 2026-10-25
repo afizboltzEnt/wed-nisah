@@ -2,28 +2,27 @@
 
 import { useEffect, useState } from "react";
 import { AnimatePresence, MotionConfig } from "motion/react";
-import EnvelopeOpener from "./EnvelopeOpener";
+import OpeningGate from "./OpeningGate";
 import Particles from "./Particles";
 import MusicPlayer from "./MusicPlayer";
-import PageFrame from "./PageFrame";
 import Cover from "./sections/Cover";
-import Bismillah from "./sections/Bismillah";
-import InvitationMessage from "./sections/InvitationMessage";
-import Couple from "./sections/Couple";
-import Parents from "./sections/Parents";
+import Jemputan from "./sections/Jemputan";
 import DateVenue from "./sections/DateVenue";
+import Countdown from "./sections/Countdown";
+import Programme from "./sections/Programme";
 import RsvpForm from "./sections/RsvpForm";
+import Contacts from "./sections/Contacts";
 import Doa from "./sections/Doa";
 import Closing from "./sections/Closing";
-import SectionDivider from "./floral/SectionDivider";
 
 export default function Invitation() {
   const [opened, setOpened] = useState(false);
 
-  // Lock document scroll while the gate is up. Cover/PageFrame stay mounted the
-  // whole time (SSR content + hero image preload), but without this a guest
-  // could scroll the page behind the still-opaque overlay and spend every
-  // section's one-shot whileInView reveal before ever seeing it.
+  // Lock document scroll while the gate is up. Cover and the sections below
+  // stay mounted the whole time (SSR content + hero image preload), but
+  // without this a guest could scroll the page behind the still-opaque
+  // overlay and spend every section's one-shot whileInView reveal before
+  // ever seeing it.
   useEffect(() => {
     document.body.style.overflow = opened ? "" : "hidden";
     return () => {
@@ -35,27 +34,27 @@ export default function Invitation() {
     <MotionConfig reducedMotion="user">
       <Particles />
 
-      <Cover opened={opened} />
-      <PageFrame>
-        <Bismillah />
-        <InvitationMessage />
-        <SectionDivider />
-        <Couple />
-        <SectionDivider />
-        <Parents />
-        <SectionDivider />
-        <DateVenue />
-        <SectionDivider />
-        <RsvpForm />
-        <SectionDivider />
-        <Doa />
-        <Closing />
-      </PageFrame>
+      {/* inert while the gate is up: scroll is already locked above, but
+          without this a guest could still Tab/swipe into the RSVP form and
+          map links sitting behind the still-opaque overlay. */}
+      <div inert={!opened}>
+        <Cover opened={opened} />
+        <main className="mx-auto flex max-w-[560px] flex-col gap-[72px] px-4 py-10">
+          <Jemputan />
+          <DateVenue />
+          <Countdown />
+          <Programme />
+          <RsvpForm />
+          <Contacts />
+          <Doa />
+          <Closing />
+        </main>
+      </div>
 
       {opened && <MusicPlayer />}
 
       <AnimatePresence>
-        {!opened && <EnvelopeOpener onOpen={() => setOpened(true)} />}
+        {!opened && <OpeningGate onOpen={() => setOpened(true)} />}
       </AnimatePresence>
     </MotionConfig>
   );
