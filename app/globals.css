@@ -678,10 +678,3 @@ textarea.rsvp-input {
     }
 }
 
-/* ---------- Closing ---------- */
-.closing-sign {
-    font-family: var(--font-display-italic);
-    font-style: italic;
-    font-size: 2rem;
-    color: var(--color-wine);
-}

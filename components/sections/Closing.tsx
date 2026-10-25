@@ -1,7 +1,6 @@
 import Image from "next/image";
 import { StaggerGroup, StaggerItem } from "../Stagger";
 import SectionDivider from "../floral/SectionDivider";
-import { WEDDING } from "@/lib/constants";
 
 export default function Closing() {
   return (
@@ -19,16 +18,6 @@ export default function Closing() {
         </StaggerItem>
         <StaggerItem className="mt-2">
           <SectionDivider />
-        </StaggerItem>
-        <StaggerItem>
-          <p className="closing-sign">
-            {WEDDING.groom.shortName} &amp; {WEDDING.bride.shortName}
-          </p>
-        </StaggerItem>
-        <StaggerItem>
-          <p className="text-[0.65rem] uppercase tracking-[0.35em] text-ink-2">
-            {WEDDING.groom.name.toUpperCase()} &amp; {WEDDING.bride.name.toUpperCase()}
-          </p>
         </StaggerItem>
         <StaggerItem>
           <p className="mt-4 text-[0.65rem] tracking-[0.15em] text-ink-2/70">
