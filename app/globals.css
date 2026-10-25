@@ -433,6 +433,7 @@ body::before {
         color 0.25s;
 }
 .btn.solid,
+.btn[aria-selected="true"],
 .btn:hover {
     background: var(--color-ink);
     color: var(--color-paper);
@@ -444,6 +445,24 @@ body::before {
 .btn-sm {
     padding: 8px 12px;
     font-size: 0.58rem;
+}
+
+/* ---------- Gift (Doa) — QR / bank transfer switch ---------- */
+.gift-tabs {
+    display: flex;
+    justify-content: center;
+}
+.gift-tabs .btn + .btn {
+    margin-left: -1px;
+}
+/* QR stays exactly as issued (never recoloured) — just matted on white
+   so it reads as a framed card on the paper background. */
+.gift-qr {
+    width: 100%;
+    max-width: 200px;
+    padding: 8px;
+    background: #fff;
+    border: 1px solid var(--color-rule);
 }
 
 /* ---------- Majlis event box ---------- */
