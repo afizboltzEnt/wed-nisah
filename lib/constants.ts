@@ -26,10 +26,10 @@ export const WEDDING = {
   dateLong: "Sabtu, 26 Disember 2026",
   dateNum: "26.12.2026",
   dayShort: "Sabtu",
-  time: "Selepas Zohor & Seterusnya",
-  timeStart: "2:00 petang",
+  time: "4:00 petang",
+  timeStart: "12:30 tengah hari",
   /** ISO datetime (Malaysia, UTC+8) the live countdown counts down to. */
-  targetDateISO: "2026-12-26T14:00:00+08:00",
+  targetDateISO: "2026-12-26T12:30:00+08:00",
   venue: "Sireh Junjung Banquet Hall",
   address: "Level 1 - F55, Jln PJU 5/20e, PJU 5, Encorp Strand Mall, Kota Damansara, 47810 Petaling Jaya, Selangor",
   mapsUrl:
