@@ -57,7 +57,7 @@ export default function DateVenue() {
                   description: `Majlis Perkahwinan — ${WEDDING.venue}`,
                   location: WEDDING.address,
                   startISO: WEDDING.targetDateISO,
-                  durationHours: 3.5,
+                  durationHours: 5,
                 })
               }
             >
